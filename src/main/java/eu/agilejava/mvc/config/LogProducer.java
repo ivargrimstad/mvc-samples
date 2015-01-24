@@ -23,13 +23,22 @@
  */
 package eu.agilejava.mvc.config;
 
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.core.Application;
+import java.util.logging.Logger;
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.Dependent;
+import javax.enterprise.inject.Produces;
+import javax.enterprise.inject.spi.InjectionPoint;
 
 /**
  *
  * @author Ivar Grimstad <ivar.grimstad@gmail.com>
  */
-@ApplicationPath("mvc")
-public class ApplicationConfig extends Application {
+@ApplicationScoped
+public class LogProducer {
+
+   @Produces
+   @Dependent
+   public Logger getLogger(InjectionPoint ip) {
+      return Logger.getLogger(ip.getMember().getDeclaringClass().getName());
+   }
 }

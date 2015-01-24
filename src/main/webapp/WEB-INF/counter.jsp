@@ -13,5 +13,6 @@
    </head>
    <body>
       <h1>Count for ${count.message}</h1>
+      <h2>${count.count}</h2>
    </body>
 </html>

@@ -23,6 +23,8 @@
  */
 package eu.agilejava.mvc;
 
+import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.mvc.Controller;
 import javax.mvc.Models;
@@ -39,15 +41,30 @@ import javax.ws.rs.Produces;
 public class CountController {
 
    @Inject
+   private Logger logger;
+
+   @Inject
    private Models models;
+
+   @Inject
+   private Counter counter;
 
    @GET
    @Controller
    @Produces("text/html")
    @Path("{id}")
    public String view1(@PathParam("id") String id) {
+
+      logger.info(() -> "Invoking controller");
+
       Count count = new Count(id);
-      models.set("count",count);
+      count.setCount(counter.next());
+      models.set("count", count);
       return "counter.jsp";
+   }
+
+   @PostConstruct
+   private void init() {
+      logger.config(() -> this.getClass().getSimpleName() + " created");
    }
 }
