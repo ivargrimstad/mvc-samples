@@ -28,6 +28,7 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.mvc.Controller;
 import javax.mvc.Models;
+import javax.mvc.View;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -53,14 +54,14 @@ public class CountController {
    @Controller
    @Produces("text/html")
    @Path("{id}")
-   public String view(@PathParam("id") String id) {
+   @View("counter.jsp")
+   public void view(@PathParam("id") String id) {
 
       logger.info(() -> "Invoking controller");
 
       Count count = new Count(id);
       count.setCount(counter.next());
       models.set("count", count);
-      return "counter.jsp";
    }
 
    @PostConstruct
