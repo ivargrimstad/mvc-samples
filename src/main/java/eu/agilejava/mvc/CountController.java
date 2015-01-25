@@ -53,7 +53,7 @@ public class CountController {
    @Controller
    @Produces("text/html")
    @Path("{id}")
-   public String view1(@PathParam("id") String id) {
+   public String view(@PathParam("id") String id) {
 
       logger.info(() -> "Invoking controller");
 
