@@ -61,7 +61,7 @@ public class CountController {
 
       Count count = new Count(id);
       count.setCount(counter.next());
-      models.set("count", count);
+      models.put("count", count);
    }
 
    @PostConstruct
