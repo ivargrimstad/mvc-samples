@@ -47,6 +47,7 @@ import static javax.ws.rs.core.Response.Status.OK;
  * @author Ivar Grimstad <ivar.grimstad@gmail.com>
  */
 @Path("hello")
+@Controller
 public class HelloController {
 
    @Inject
@@ -56,7 +57,6 @@ public class HelloController {
    private ValidationResult validationResult;
 
    @GET
-   @Controller
    @Path("{name}")
    @View("hello.jsp")
    public void view(@PathParam("name") String name) {
@@ -64,7 +64,6 @@ public class HelloController {
       models.put("name", name);
    }
 
-   @Controller
    @POST
    @ValidateOnExecution(type = ExecutableType.NONE)
    public Response formPost(@Valid @BeanParam HelloBean form) {

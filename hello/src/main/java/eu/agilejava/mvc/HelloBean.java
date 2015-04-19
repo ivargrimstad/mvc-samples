@@ -23,8 +23,6 @@
  */
 package eu.agilejava.mvc;
 
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Named;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.ws.rs.FormParam;
