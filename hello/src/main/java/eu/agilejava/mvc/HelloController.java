@@ -23,13 +23,24 @@
  */
 package eu.agilejava.mvc;
 
+import java.util.Set;
 import javax.inject.Inject;
 import javax.mvc.Controller;
 import javax.mvc.Models;
 import javax.mvc.View;
+import javax.mvc.validation.ValidationResult;
+import javax.validation.ConstraintViolation;
+import javax.validation.Valid;
+import javax.validation.executable.ExecutableType;
+import javax.validation.executable.ValidateOnExecution;
+import javax.ws.rs.BeanParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.core.Response;
+import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
+import static javax.ws.rs.core.Response.Status.OK;
 
 /**
  *
@@ -41,6 +52,9 @@ public class HelloController {
    @Inject
    private Models models;
 
+   @Inject
+   private ValidationResult validationResult;
+
    @GET
    @Controller
    @Path("{name}")
@@ -48,5 +62,27 @@ public class HelloController {
    public void view(@PathParam("name") String name) {
 
       models.put("name", name);
+   }
+
+   @Controller
+   @POST
+   @ValidateOnExecution(type = ExecutableType.NONE)
+   public Response formPost(@Valid @BeanParam HelloBean form) {
+
+      if (validationResult.isFailed()) {
+         final Set<ConstraintViolation<?>> set = validationResult.getAllViolations();
+         final ConstraintViolation<?> cv = set.iterator().next();
+         final String property = cv.getPropertyPath().toString();
+
+         models.put("property", property.substring(property.lastIndexOf('.') + 1));
+         models.put("value", cv.getInvalidValue());
+         models.put("message", cv.getMessage());
+
+         return Response.status(BAD_REQUEST).entity("error.jsp").build();
+      }
+
+      models.put("name", form.getFirstName() + " " + form.getLastName());
+      
+      return Response.status(OK).entity("hello.jsp").build();
    }
 }
