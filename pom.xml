@@ -14,5 +14,4 @@
       <module>hello</module>
       <module>hello-cdi</module>
    </modules>    
-
 </project>
