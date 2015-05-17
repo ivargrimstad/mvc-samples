@@ -32,13 +32,14 @@ import javax.mvc.View;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
 
 /**
  *
  * @author Ivar Grimstad <ivar.grimstad@gmail.com>
  */
 @Path("count")
+@View("counter.jsp")
+@Controller
 public class CountController {
 
    @Inject
@@ -51,10 +52,7 @@ public class CountController {
    private Counter counter;
 
    @GET
-   @Controller
-   @Produces("text/html")
    @Path("{id}")
-   @View("counter.jsp")
    public void view(@PathParam("id") String id) {
 
       logger.info(() -> "Invoking controller");
