@@ -45,7 +45,7 @@ import static javax.ws.rs.core.Response.Status.OK;
 /**
  *
  * @author Ivar Grimstad <ivar.grimstad@gmail.com>
- */
+ */ 
 @Path("hello")
 @Controller
 public class HelloController {
