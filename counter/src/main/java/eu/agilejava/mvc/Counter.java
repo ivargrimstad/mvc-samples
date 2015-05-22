@@ -4,7 +4,6 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
-import javax.inject.Inject;
 
 /**
  *
@@ -13,8 +12,7 @@ import javax.inject.Inject;
 @Singleton
 public class Counter {
 
-   @Inject
-   private Logger logger;
+   private static final Logger LOGGER = Logger.getLogger(CountObserver.class.getName());
 
    private final AtomicLong counter = new AtomicLong();
 
@@ -29,6 +27,6 @@ public class Counter {
 
    @PostConstruct
    private void init() {
-      logger.config(() -> this.getClass().getSimpleName() + " created");
+      LOGGER.config(() -> this.getClass().getSimpleName() + " created");
    }
 }

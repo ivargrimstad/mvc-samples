@@ -27,7 +27,6 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
-import javax.inject.Inject;
 import javax.mvc.event.ControllerMatched;
 import javax.mvc.event.ViewEngineSelected;
 
@@ -38,19 +37,18 @@ import javax.mvc.event.ViewEngineSelected;
 @ApplicationScoped
 public class CountObserver {
    
-   @Inject
-   private Logger logger;
+   private static final Logger LOGGER = Logger.getLogger(CountObserver.class.getName());
    
    private void onControllerMatched(@Observes ControllerMatched event) {
-      logger.info(() -> "Controller matched for " + event.getUriInfo().getRequestUri() );
+      LOGGER.info(() -> "Controller matched for " + event.getUriInfo().getRequestUri() );
    }
    
    private void onViewEngineSelected(@Observes ViewEngineSelected event ) {
-      logger.info(() -> "View engine: " + event.getEngine());
+      LOGGER.info(() -> "View engine: " + event.getEngine());
    }
    
    @PostConstruct
    private void init() {
-      logger.config(() -> this.getClass().getSimpleName() + " created");
+      LOGGER.config(() -> this.getClass().getSimpleName() + " created");
    }
 }

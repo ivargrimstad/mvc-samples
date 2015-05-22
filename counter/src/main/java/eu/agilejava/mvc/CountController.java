@@ -42,8 +42,7 @@ import javax.ws.rs.PathParam;
 @Controller
 public class CountController {
 
-   @Inject
-   private Logger logger;
+   private static final Logger LOGGER = Logger.getLogger(CountController.class.getName());
 
    @Inject
    private Models models;
@@ -55,7 +54,7 @@ public class CountController {
    @Path("{id}")
    public void view(@PathParam("id") String id) {
 
-      logger.info(() -> "Invoking controller");
+      LOGGER.info(() -> "Invoking controller");
 
       Count count = new Count(id);
       count.setCount(counter.next());
@@ -64,6 +63,6 @@ public class CountController {
 
    @PostConstruct
    private void init() {
-      logger.config(() -> this.getClass().getSimpleName() + " created");
+      LOGGER.config(() -> this.getClass().getSimpleName() + " created");
    }
 }
