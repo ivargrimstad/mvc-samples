@@ -31,7 +31,7 @@
          <artifactId>javax.mvc-api</artifactId>
       </dependency>
       <dependency>
-         <groupId>com.oracle.ozark</groupId>
+         <groupId>org.glassfish.ozark</groupId>
          <artifactId>ozark</artifactId>
          <scope>runtime</scope>
       </dependency>  

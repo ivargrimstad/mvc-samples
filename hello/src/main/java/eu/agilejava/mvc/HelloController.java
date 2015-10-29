@@ -25,10 +25,10 @@ package eu.agilejava.mvc;
 
 import java.util.Set;
 import javax.inject.Inject;
-import javax.mvc.Controller;
 import javax.mvc.Models;
-import javax.mvc.View;
-import javax.mvc.validation.ValidationResult;
+import javax.mvc.annotation.Controller;
+import javax.mvc.annotation.View;
+import javax.mvc.binding.BindingResult;
 import javax.validation.ConstraintViolation;
 import javax.validation.Valid;
 import javax.validation.executable.ExecutableType;
@@ -54,7 +54,7 @@ public class HelloController {
    private Models models;
 
    @Inject
-   private ValidationResult validationResult;
+   private BindingResult validationResult;
 
    @GET
    @Path("{name}")
