@@ -6,3 +6,5 @@ pom.xml.next
 release.properties
 nb-configuration.xml
 nbactions.xml
+.idea
+*.iml
