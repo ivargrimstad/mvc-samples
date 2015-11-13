@@ -46,28 +46,28 @@ import static javax.ws.rs.core.Response.Status.OK;
 @Controller
 public class HelloController {
 
-   @Inject
-   private BindingResult validationResult;
-   
-   @Inject
-   private ErrorBean error;
+    @Inject
+    private BindingResult validationResult;
 
-   @POST
-   @ValidateOnExecution(type = ExecutableType.NONE)
-   public Response formPost(@Valid @BeanParam HelloBean form) {
+    @Inject
+    private ErrorBean error;
 
-      if (validationResult.isFailed()) {
-         final Set<ConstraintViolation<?>> set = validationResult.getAllViolations();
-         final ConstraintViolation<?> cv = set.iterator().next();
-         final String property = cv.getPropertyPath().toString();
+    @POST
+    @ValidateOnExecution(type = ExecutableType.NONE)
+    public Response formPost(@Valid @BeanParam HelloBean form) {
 
-         error.setProperty(property.substring(property.lastIndexOf('.') + 1));
-         error.setValue(cv.getInvalidValue());
-         error.setMessage(cv.getMessage());
+        if (validationResult.isFailed()) {
+            final Set<ConstraintViolation<?>> set = validationResult.getAllViolations();
+            final ConstraintViolation<?> cv = set.iterator().next();
+            final String property = cv.getPropertyPath().toString();
 
-         return Response.status(BAD_REQUEST).entity("error.jsp").build();
-      }
-      
-      return Response.status(OK).entity("hello.jsp").build();
-   }
+            error.setProperty(property.substring(property.lastIndexOf('.') + 1));
+            error.setValue(cv.getInvalidValue());
+            error.setMessage(cv.getMessage());
+
+            return Response.status(BAD_REQUEST).entity("error.jsp").build();
+        }
+
+        return Response.status(OK).entity("hello.jsp").build();
+    }
 }

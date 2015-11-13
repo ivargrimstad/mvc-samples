@@ -36,11 +36,11 @@ import javax.ws.rs.core.Application;
 @ApplicationPath("mvc")
 public class ApplicationConfig extends Application {
 
-   @Override
-   public Set<Class<?>> getClasses() {
-      final Set<Class<?>> set = new HashSet<>();
-      set.add(HelloController.class);
-      return set;
-   }
+    @Override
+    public Set<Class<?>> getClasses() {
+        final Set<Class<?>> set = new HashSet<>();
+        set.add(HelloController.class);
+        return set;
+    }
 
 }

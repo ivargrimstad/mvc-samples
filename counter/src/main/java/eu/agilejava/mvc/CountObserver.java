@@ -36,19 +36,19 @@ import javax.mvc.event.BeforeProcessViewEvent;
  */
 @ApplicationScoped
 public class CountObserver {
-   
-   private static final Logger LOGGER = Logger.getLogger(CountObserver.class.getName());
-   
-   private void onControllerMatched(@Observes BeforeControllerEvent event) {
-      LOGGER.info(() -> "Controller matched for " + event.getUriInfo().getRequestUri() );
-   }
-   
-   private void onViewEngineSelected(@Observes BeforeProcessViewEvent event ) {
-      LOGGER.info(() -> "View engine: " + event.getEngine());
-   }
-   
-   @PostConstruct
-   private void init() {
-      LOGGER.config(() -> this.getClass().getSimpleName() + " created");
-   }
+
+    private static final Logger LOGGER = Logger.getLogger(CountObserver.class.getName());
+
+    private void onControllerMatched(@Observes BeforeControllerEvent event) {
+        LOGGER.info(() -> "Controller matched for " + event.getUriInfo().getRequestUri());
+    }
+
+    private void onViewEngineSelected(@Observes BeforeProcessViewEvent event) {
+        LOGGER.info(() -> "View engine: " + event.getEngine());
+    }
+
+    @PostConstruct
+    private void init() {
+        LOGGER.config(() -> this.getClass().getSimpleName() + " created");
+    }
 }

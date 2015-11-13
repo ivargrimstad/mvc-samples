@@ -36,8 +36,8 @@ import javax.ws.rs.core.Application;
 @ApplicationPath("mvc")
 public class ApplicationConfig extends Application {
 
-   @Override
-   public Set<Class<?>> getClasses() {
-      return Collections.singleton(CountController.class);
-   }
+    @Override
+    public Set<Class<?>> getClasses() {
+        return Collections.singleton(CountController.class);
+    }
 }

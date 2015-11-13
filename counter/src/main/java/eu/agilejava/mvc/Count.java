@@ -24,40 +24,40 @@ package eu.agilejava.mvc;
  */
 public class Count {
 
-   private final String message;
-   private long count;
-   private long simpleCount;
-   private long awsomeCount;
+    private final String message;
+    private long count;
+    private long simpleCount;
+    private long awsomeCount;
 
-   public Count(String content) {
-      this.message = content;
-   }
+    public Count(String content) {
+        this.message = content;
+    }
 
-   public String getMessage() {
-      return message;
-   }
+    public String getMessage() {
+        return message;
+    }
 
-   public long getCount() {
-      return count;
-   }
+    public long getCount() {
+        return count;
+    }
 
-   public void setCount(final long count) {
-      this.count = count;
-   }
-   
-   public long getSimpleCount() {
-      return simpleCount;
-   }
+    public void setCount(final long count) {
+        this.count = count;
+    }
 
-   public void setSimpleCount(final long simpleCount) {
-      this.simpleCount = simpleCount;
-   }
+    public long getSimpleCount() {
+        return simpleCount;
+    }
 
-   public long getAwsomeCount() {
-      return awsomeCount;
-   }
+    public void setSimpleCount(final long simpleCount) {
+        this.simpleCount = simpleCount;
+    }
 
-   public void setAwsomeCount(final long awsomeCount) {
-      this.awsomeCount = awsomeCount;
-   }
+    public long getAwsomeCount() {
+        return awsomeCount;
+    }
+
+    public void setAwsomeCount(final long awsomeCount) {
+        this.awsomeCount = awsomeCount;
+    }
 }

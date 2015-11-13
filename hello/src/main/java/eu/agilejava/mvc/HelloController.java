@@ -45,43 +45,43 @@ import static javax.ws.rs.core.Response.Status.OK;
 /**
  *
  * @author Ivar Grimstad <ivar.grimstad@gmail.com>
- */ 
+ */
 @Path("hello")
 @Controller
 public class HelloController {
 
-   @Inject
-   private Models models;
+    @Inject
+    private Models models;
 
-   @Inject
-   private BindingResult validationResult;
+    @Inject
+    private BindingResult validationResult;
 
-   @GET
-   @Path("{name}")
-   @View("hello.jsp")
-   public void view(@PathParam("name") String name) {
+    @GET
+    @Path("{name}")
+    @View("hello.jsp")
+    public void view(@PathParam("name") String name) {
 
-      models.put("name", name);
-   }
+        models.put("name", name);
+    }
 
-   @POST
-   @ValidateOnExecution(type = ExecutableType.NONE)
-   public Response formPost(@Valid @BeanParam HelloBean form) {
+    @POST
+    @ValidateOnExecution(type = ExecutableType.NONE)
+    public Response formPost(@Valid @BeanParam HelloBean form) {
 
-      if (validationResult.isFailed()) {
-         final Set<ConstraintViolation<?>> set = validationResult.getAllViolations();
-         final ConstraintViolation<?> cv = set.iterator().next();
-         final String property = cv.getPropertyPath().toString();
+        if (validationResult.isFailed()) {
+            final Set<ConstraintViolation<?>> set = validationResult.getAllViolations();
+            final ConstraintViolation<?> cv = set.iterator().next();
+            final String property = cv.getPropertyPath().toString();
 
-         models.put("property", property.substring(property.lastIndexOf('.') + 1));
-         models.put("value", cv.getInvalidValue());
-         models.put("message", cv.getMessage());
+            models.put("property", property.substring(property.lastIndexOf('.') + 1));
+            models.put("value", cv.getInvalidValue());
+            models.put("message", cv.getMessage());
 
-         return Response.status(BAD_REQUEST).entity("error.jsp").build();
-      }
+            return Response.status(BAD_REQUEST).entity("error.jsp").build();
+        }
 
-      models.put("name", form.getFirstName() + " " + form.getLastName());
-      
-      return Response.status(OK).entity("hello.jsp").build();
-   }
+        models.put("name", form.getFirstName() + " " + form.getLastName());
+
+        return Response.status(OK).entity("hello.jsp").build();
+    }
 }

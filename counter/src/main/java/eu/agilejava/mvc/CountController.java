@@ -42,27 +42,27 @@ import javax.ws.rs.PathParam;
 @Controller
 public class CountController {
 
-   private static final Logger LOGGER = Logger.getLogger(CountController.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(CountController.class.getName());
 
-   @Inject
-   private Models models;
+    @Inject
+    private Models models;
 
-   @Inject
-   private Counter counter;
+    @Inject
+    private Counter counter;
 
-   @GET
-   @Path("{id}")
-   public void view(@PathParam("id") String id) {
+    @GET
+    @Path("{id}")
+    public void view(@PathParam("id") String id) {
 
-      LOGGER.info(() -> "Invoking controller");
+        LOGGER.info(() -> "Invoking controller");
 
-      Count count = new Count(id);
-      count.setCount(counter.next());
-      models.put("count", count);
-   }
+        Count count = new Count(id);
+        count.setCount(counter.next());
+        models.put("count", count);
+    }
 
-   @PostConstruct
-   private void init() {
-      LOGGER.config(() -> this.getClass().getSimpleName() + " created");
-   }
+    @PostConstruct
+    private void init() {
+        LOGGER.config(() -> this.getClass().getSimpleName() + " created");
+    }
 }

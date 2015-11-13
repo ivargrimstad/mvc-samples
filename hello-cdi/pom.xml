@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-   <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-   <parent>
-       <groupId>eu.agilejava</groupId>
-       <artifactId>mvc-samples</artifactId>
-       <version>1.0-SNAPSHOT</version>
-       <relativePath>../pom.xml</relativePath>
-   </parent>
-   <artifactId>mvc-samples-hello-cdi</artifactId>
-   <packaging>war</packaging>
+    <parent>
+        <groupId>eu.agilejava</groupId>
+        <artifactId>mvc-samples</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <artifactId>mvc-samples-hello-cdi</artifactId>
+    <packaging>war</packaging>
 
-   <name>MVC Hello CDI Sample</name>
+    <name>MVC Hello CDI Sample</name>
 
-   <properties>
-       <netbeans.hint.license>mit</netbeans.hint.license>
-       <failOnMissingWebXml>false</failOnMissingWebXml>
-   </properties>
+    <properties>
+        <netbeans.hint.license>mit</netbeans.hint.license>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
+    </properties>
     
-   <dependencies>
-      <dependency>
-         <groupId>javax</groupId>
-         <artifactId>javaee-web-api</artifactId>
-         <scope>provided</scope>
-      </dependency>
+    <dependencies>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-web-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
       
-      <!-- Needed until Java EE 8 -->
-      <dependency>
-         <groupId>javax.mvc</groupId>
-         <artifactId>javax.mvc-api</artifactId>
-      </dependency>
-      <dependency>
-         <groupId>org.glassfish.ozark</groupId>
-         <artifactId>ozark</artifactId>
-         <scope>runtime</scope>
-      </dependency>  
-   </dependencies>
+        <!-- Needed until Java EE 8 -->
+        <dependency>
+            <groupId>javax.mvc</groupId>
+            <artifactId>javax.mvc-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.ozark</groupId>
+            <artifactId>ozark</artifactId>
+            <scope>runtime</scope>
+        </dependency>  
+    </dependencies>
    
 </project>
