@@ -25,8 +25,8 @@ package eu.agilejava.mvc;
 
 import java.util.Set;
 import javax.inject.Inject;
-import javax.mvc.Controller;
-import javax.mvc.validation.ValidationResult;
+import javax.mvc.annotation.Controller;
+import javax.mvc.binding.BindingResult;
 import javax.validation.ConstraintViolation;
 import javax.validation.Valid;
 import javax.validation.executable.ExecutableType;
@@ -47,7 +47,7 @@ import static javax.ws.rs.core.Response.Status.OK;
 public class HelloController {
 
    @Inject
-   private ValidationResult validationResult;
+   private BindingResult validationResult;
    
    @Inject
    private ErrorBean error;
