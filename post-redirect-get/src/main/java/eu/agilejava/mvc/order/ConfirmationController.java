@@ -21,27 +21,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.agilejava.mvc.config;
+package eu.agilejava.mvc.order;
 
-import eu.agilejava.mvc.order.ConfirmationController;
-import eu.agilejava.mvc.order.OrderController;
-import java.util.HashSet;
-import java.util.Set;
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.core.Application;
+import eu.agilejava.mvc.domain.OrderConfirmation;
+import javax.inject.Inject;
+import javax.mvc.annotation.Controller;
+import javax.mvc.annotation.View;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
 
 /**
  *
  * @author Ivar Grimstad (ivar.grimstad@gmail.com)
  */
-@ApplicationPath("mvc")
-public class ApplicationConfig extends Application {
-
-    @Override
-    public Set<Class<?>> getClasses() {
-        final Set<Class<?>> classes = new HashSet<>();
-        classes.add(OrderController.class);
-        classes.add(ConfirmationController.class);
-        return classes;
+@Controller
+@Path("confirmation")
+public class ConfirmationController {
+    
+    @Inject
+    private OrderConfirmation orderConfirmation;
+    
+    @View("confirmation.jsp")
+    @GET
+    public void confirmation() {
+        
     }
+    
 }

@@ -21,27 +21,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.agilejava.mvc.config;
-
-import eu.agilejava.mvc.order.ConfirmationController;
-import eu.agilejava.mvc.order.OrderController;
-import java.util.HashSet;
-import java.util.Set;
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.core.Application;
+package eu.agilejava.mvc.domain;
 
 /**
  *
  * @author Ivar Grimstad (ivar.grimstad@gmail.com)
  */
-@ApplicationPath("mvc")
-public class ApplicationConfig extends Application {
+public class Order {
+  
+    private String id;
 
-    @Override
-    public Set<Class<?>> getClasses() {
-        final Set<Class<?>> classes = new HashSet<>();
-        classes.add(OrderController.class);
-        classes.add(ConfirmationController.class);
-        return classes;
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

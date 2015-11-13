@@ -21,27 +21,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.agilejava.mvc.config;
+package eu.agilejava.mvc.domain;
 
-import eu.agilejava.mvc.order.ConfirmationController;
-import eu.agilejava.mvc.order.OrderController;
-import java.util.HashSet;
-import java.util.Set;
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.core.Application;
+import java.io.Serializable;
+import javax.inject.Named;
+import javax.mvc.annotation.RedirectScoped;
 
 /**
  *
  * @author Ivar Grimstad (ivar.grimstad@gmail.com)
  */
-@ApplicationPath("mvc")
-public class ApplicationConfig extends Application {
+@Named
+@RedirectScoped
+public class OrderConfirmation implements Serializable {
+    
+    private static final long serialVersionUID = 18763458763874658L;
+    
+    private String id;
 
-    @Override
-    public Set<Class<?>> getClasses() {
-        final Set<Class<?>> classes = new HashSet<>();
-        classes.add(OrderController.class);
-        classes.add(ConfirmationController.class);
-        return classes;
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

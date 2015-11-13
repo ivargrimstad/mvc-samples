@@ -21,27 +21,61 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.agilejava.mvc.config;
+package eu.agilejava.mvc.order;
 
-import eu.agilejava.mvc.order.ConfirmationController;
-import eu.agilejava.mvc.order.OrderController;
+import eu.agilejava.mvc.domain.Order;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.core.Application;
+import java.util.UUID;
+import static java.util.stream.Collectors.toList;
+import javax.annotation.PostConstruct;
+import javax.inject.Named;
+import javax.inject.Singleton;
+import javax.validation.constraints.NotNull;
 
 /**
  *
  * @author Ivar Grimstad (ivar.grimstad@gmail.com)
  */
-@ApplicationPath("mvc")
-public class ApplicationConfig extends Application {
+@Named
+@Singleton
+public class OrderService {
+    
+    private final Set<Order> orders;
 
-    @Override
-    public Set<Class<?>> getClasses() {
-        final Set<Class<?>> classes = new HashSet<>();
-        classes.add(OrderController.class);
-        classes.add(ConfirmationController.class);
-        return classes;
+    public OrderService() {
+        this.orders = new HashSet<>();
     }
+    
+    public Order save(@NotNull Order order) {
+        
+        if(order.getId() == null || order.getId().isEmpty() ) {
+            order.setId(UUID.randomUUID().toString());
+        }
+        orders.remove(order);
+        orders.add(order);
+        
+        return order;
+    }
+    
+    public List<Order> findAll() {
+        return orders.stream()
+                     .collect(toList());
+    }
+    
+    public Order findById(final String id) {
+        return orders.stream()
+                .filter(o -> o.getId().equals(id)).findFirst().orElse(new Order());
+    }
+    
+    public void remove(final String id) {
+        orders.remove(findById(id));
+    }
+    
+    @PostConstruct
+    private void init() {
+        
+    }
+    
 }
