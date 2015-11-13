@@ -44,5 +44,6 @@
         <module>counter</module>
         <module>hello</module>
         <module>hello-cdi</module>
+        <module>post-redirect-get</module>
     </modules>    
 </project>

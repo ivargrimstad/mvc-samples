@@ -1,7 +1,7 @@
 <%-- 
     Document   : cookbook
     Created on : Jan 23, 2015, 8:20:27 PM
-    Author     : Ivar Grimstad <ivar.grimstad@gmail.com>
+    Author     : Ivar Grimstad (ivar.grimstad@gmail.com)
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

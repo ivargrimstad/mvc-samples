@@ -1,7 +1,7 @@
 /**
  * The MIT License
  *
- * Copyright 2014 Ivar Grimstad <ivar.grimstad@gmail.com>.
+ * Copyright 2014 Ivar Grimstad (ivar.grimstad@gmail.com).
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
  * documentation files (the "Software"), to deal in the Software without restriction, including without limitation the
@@ -20,7 +20,7 @@ package eu.agilejava.mvc;
 
 /**
  *
- * @author Ivar Grimstad <ivar.grimstad@gmail.com>
+ * @author Ivar Grimstad (ivar.grimstad@gmail.com)
  */
 public class Count {
 
