@@ -35,13 +35,17 @@ import javax.ws.rs.core.Application;
  * @author Ivar Grimstad (ivar.grimstad@gmail.com)
  */
 @ApplicationPath("mvc")
-public class ApplicationConfig extends Application {
+public class MyApplication extends Application {
 
     @Override
     public Set<Class<?>> getClasses() {
-        final Set<Class<?>> classes = new HashSet<>();
+
+        Set<Class<?>> classes = new HashSet<>();
+
         classes.add(OrderController.class);
         classes.add(ConfirmationController.class);
+
         return classes;
     }
+
 }
