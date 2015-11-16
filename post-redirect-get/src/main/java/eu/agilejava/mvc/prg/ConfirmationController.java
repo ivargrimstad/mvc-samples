@@ -23,7 +23,6 @@
  */
 package eu.agilejava.mvc.prg;
 
-import eu.agilejava.mvc.domain.Reservation;
 import javax.inject.Inject;
 import javax.mvc.annotation.Controller;
 import javax.mvc.annotation.View;

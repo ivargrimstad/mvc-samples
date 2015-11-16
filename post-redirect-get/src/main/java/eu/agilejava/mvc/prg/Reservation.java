@@ -21,38 +21,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.agilejava.mvc.domain;
+package eu.agilejava.mvc.prg;
 
-import javax.faces.bean.RequestScoped;
+import java.io.Serializable;
 import javax.inject.Named;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import javax.ws.rs.FormParam;
+import javax.mvc.annotation.RedirectScoped;
 
 /**
  *
  * @author Ivar Grimstad (ivar.grimstad@gmail.com)
  */
 @Named
-@RequestScoped
-public class ReservationFormBean {
+@RedirectScoped
+public class Reservation implements Serializable {
 
-    @FormParam("id") 
+    private static final long serialVersionUID = 14251616245433L;
+
     private String id;
-    
-    @NotNull
-    @Size(min = 2)
-    @FormParam("name")
     private String name;
-
-    @NotNull
-    @FormParam("count")
     private int count;
-    
-    @FormParam("date")
     private String date;
-
-    @FormParam("outside")
     private boolean outside;
     
     public String getId() {
@@ -94,4 +82,6 @@ public class ReservationFormBean {
     public void setOutside(boolean outside) {
         this.outside = outside;
     }
+
+    
 }

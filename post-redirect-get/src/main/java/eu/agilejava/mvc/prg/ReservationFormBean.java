@@ -23,33 +23,75 @@
  */
 package eu.agilejava.mvc.prg;
 
-import eu.agilejava.mvc.domain.Reservation;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import javax.faces.bean.RequestScoped;
 import javax.inject.Named;
-import javax.inject.Singleton;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.ws.rs.FormParam;
 
 /**
  *
  * @author Ivar Grimstad (ivar.grimstad@gmail.com)
  */
 @Named
-@Singleton
-public class ReservationService {
-    
-    private final Set<Reservation> reservations =  new HashSet<>();;
+@RequestScoped
+public class ReservationFormBean {
 
-    public Reservation save(@NotNull Reservation reservation) {
-        
-        if(reservation.getId() == null || reservation.getId().isEmpty() ) {
-            reservation.setId(UUID.randomUUID().toString());
-        }
-        
-        reservations.remove(reservation);
-        reservations.add(reservation);
-        
-        return reservation;
+    @FormParam("id") 
+    private String id;
+    
+    @NotNull
+    @Size(min = 2)
+    @FormParam("name")
+    private String name;
+
+    @NotNull
+    @FormParam("count")
+    private int count;
+    
+    @FormParam("date")
+    private String date;
+
+    @FormParam("outside")
+    private boolean outside;
+    
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public boolean isOutside() {
+        return outside;
+    }
+
+    public void setOutside(boolean outside) {
+        this.outside = outside;
     }
 }

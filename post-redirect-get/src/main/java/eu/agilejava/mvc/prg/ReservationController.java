@@ -23,10 +23,7 @@
  */
 package eu.agilejava.mvc.prg;
 
-import eu.agilejava.mvc.domain.Messages;
-import eu.agilejava.mvc.domain.Reservation;
-import eu.agilejava.mvc.domain.ReservationFormBean;
-import java.text.SimpleDateFormat;
+import eu.agilejava.mvc.service.ReservationService;
 import static java.util.stream.Collectors.toList;
 import javax.inject.Inject;
 import javax.mvc.annotation.Controller;
