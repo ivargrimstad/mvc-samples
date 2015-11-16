@@ -12,21 +12,21 @@ import javax.ejb.Singleton;
 @Singleton
 public class Counter {
 
-   private static final Logger LOGGER = Logger.getLogger(CountObserver.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(CountObserver.class.getName());
 
-   private final AtomicLong counter = new AtomicLong();
+    private final AtomicLong counter = new AtomicLong();
 
-   /**
-    * Retrieves the next number.
-    *
-    * @return the next count
-    */
-   public long next() {
-      return counter.incrementAndGet();
-   }
+    /**
+     * Retrieves the next number.
+     *
+     * @return the next count
+     */
+    public long next() {
+        return counter.incrementAndGet();
+    }
 
-   @PostConstruct
-   private void init() {
-      LOGGER.config(() -> this.getClass().getSimpleName() + " created");
-   }
+    @PostConstruct
+    private void init() {
+        LOGGER.config(() -> this.getClass().getSimpleName() + " created");
+    }
 }

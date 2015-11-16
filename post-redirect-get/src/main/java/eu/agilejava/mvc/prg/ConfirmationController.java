@@ -21,23 +21,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.agilejava.mvc.config;
+package eu.agilejava.mvc.prg;
 
-import eu.agilejava.mvc.CountController;
-import java.util.Collections;
-import java.util.Set;
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.core.Application;
+import eu.agilejava.mvc.domain.Reservation;
+import javax.inject.Inject;
+import javax.mvc.annotation.Controller;
+import javax.mvc.annotation.View;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
 
 /**
  *
  * @author Ivar Grimstad (ivar.grimstad@gmail.com)
  */
-@ApplicationPath("mvc")
-public class ApplicationConfig extends Application {
-
-    @Override
-    public Set<Class<?>> getClasses() {
-        return Collections.singleton(CountController.class);
+@Controller
+@Path("confirmation")
+public class ConfirmationController {
+    
+    @Inject
+    private Reservation reservation;
+    
+    @View("confirmation.jsp")
+    @GET
+    public void confirmation() {
+        
     }
+    
 }

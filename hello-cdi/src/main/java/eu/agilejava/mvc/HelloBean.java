@@ -37,30 +37,30 @@ import javax.ws.rs.FormParam;
 @RequestScoped
 public class HelloBean {
 
-   @NotNull
-   @Size(min = 1, max = 16)
-   @FormParam("firstName")
-   private String firstName;
+    @NotNull
+    @Size(min = 1, max = 16)
+    @FormParam("firstName")
+    private String firstName;
 
-   @NotNull
-   @Size(min = 1, max = 24)
-   @FormParam("lastName")
-   private String lastName;
+    @NotNull
+    @Size(min = 1, max = 24)
+    @FormParam("lastName")
+    private String lastName;
 
-   public String getFirstName() {
-      return firstName;
-   }
+    public String getFirstName() {
+        return firstName;
+    }
 
-   public void setFirstName(String firstName) {
-      this.firstName = firstName;
-   }
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-   public String getLastName() {
-      return lastName;
-   }
+    public String getLastName() {
+        return lastName;
+    }
 
-   public void setLastName(String lastName) {
-      this.lastName = lastName;
-   }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
 }

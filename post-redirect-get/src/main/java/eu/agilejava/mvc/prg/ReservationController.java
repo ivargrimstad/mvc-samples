@@ -21,53 +21,79 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.agilejava.mvc;
+package eu.agilejava.mvc.prg;
 
-import java.util.Set;
+import eu.agilejava.mvc.domain.Messages;
+import eu.agilejava.mvc.domain.Reservation;
+import eu.agilejava.mvc.domain.ReservationFormBean;
+import java.text.SimpleDateFormat;
+import static java.util.stream.Collectors.toList;
 import javax.inject.Inject;
 import javax.mvc.annotation.Controller;
+import javax.mvc.annotation.CsrfValid;
+import javax.mvc.annotation.View;
 import javax.mvc.binding.BindingResult;
 import javax.validation.ConstraintViolation;
 import javax.validation.Valid;
-import javax.validation.executable.ExecutableType;
+import static javax.validation.executable.ExecutableType.NONE;
 import javax.validation.executable.ValidateOnExecution;
 import javax.ws.rs.BeanParam;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
-import static javax.ws.rs.core.Response.Status.OK;
 
 /**
  *
  * @author Ivar Grimstad (ivar.grimstad@gmail.com)
  */
-@Path("hello")
 @Controller
-public class HelloController {
-
+@Path("reservations")
+public class ReservationController {
+    
     @Inject
-    private BindingResult validationResult;
-
+    private Reservation reservation;
+    
     @Inject
-    private ErrorBean error;
-
+    private ReservationService reservationService;
+    
+    @Inject
+    private BindingResult br;
+    
+    @Inject
+    private Messages messages;
+    
+    @View("reservation.jsp")
+    @GET
+    @Path("new")
+    public void emptyReservation() {
+    }
+    
+    @CsrfValid
     @POST
-    @ValidateOnExecution(type = ExecutableType.NONE)
-    public Response formPost(@Valid @BeanParam HelloBean form) {
-
-        if (validationResult.isFailed()) {
-            final Set<ConstraintViolation<?>> set = validationResult.getAllViolations();
-            final ConstraintViolation<?> cv = set.iterator().next();
-            final String property = cv.getPropertyPath().toString();
-
-            error.setProperty(property.substring(property.lastIndexOf('.') + 1));
-            error.setValue(cv.getInvalidValue());
-            error.setMessage(cv.getMessage());
-
-            return Response.status(BAD_REQUEST).entity("error.jsp").build();
+    @Path("new")
+    @ValidateOnExecution(type = NONE)
+    public Response createReservation(@Valid @BeanParam ReservationFormBean form) {
+        
+        reservation.setId(form.getId());
+        reservation.setName(form.getName());
+        reservation.setCount(form.getCount());
+        reservation.setDate(form.getDate());
+        reservation.setOutside(form.isOutside());
+        
+        if (br.isFailed()) {
+            messages.setErrors(
+                    br.getAllViolations().stream()
+                    .map(ConstraintViolation::getMessage)
+                    .peek(System.out::println)
+                    .collect(toList()));
+            
+            return Response.status(BAD_REQUEST).entity("reservation.jsp").build();
         }
-
-        return Response.status(OK).entity("hello.jsp").build();
+        
+        reservationService.save(reservation);
+        
+        return Response.ok("redirect:confirmation").build();
     }
 }

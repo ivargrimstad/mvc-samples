@@ -21,23 +21,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.agilejava.mvc.config;
+package eu.agilejava.mvc.prg;
 
-import eu.agilejava.mvc.CountController;
-import java.util.Collections;
+import eu.agilejava.mvc.domain.Reservation;
+import java.util.HashSet;
 import java.util.Set;
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.core.Application;
+import java.util.UUID;
+import javax.inject.Named;
+import javax.inject.Singleton;
+import javax.validation.constraints.NotNull;
 
 /**
  *
  * @author Ivar Grimstad (ivar.grimstad@gmail.com)
  */
-@ApplicationPath("mvc")
-public class ApplicationConfig extends Application {
+@Named
+@Singleton
+public class ReservationService {
+    
+    private final Set<Reservation> reservations =  new HashSet<>();;
 
-    @Override
-    public Set<Class<?>> getClasses() {
-        return Collections.singleton(CountController.class);
+    public Reservation save(@NotNull Reservation reservation) {
+        
+        if(reservation.getId() == null || reservation.getId().isEmpty() ) {
+            reservation.setId(UUID.randomUUID().toString());
+        }
+        
+        reservations.remove(reservation);
+        reservations.add(reservation);
+        
+        return reservation;
     }
 }

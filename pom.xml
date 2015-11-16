@@ -1,48 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-   <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>eu.agilejava</groupId>
+    <artifactId>mvc-samples</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
-   <groupId>eu.agilejava</groupId>
-   <artifactId>mvc-samples</artifactId>
-   <version>1.0-SNAPSHOT</version>
-   <packaging>pom</packaging>
+    <name>MVC Samples</name>
 
-   <name>MVC Samples</name>
+    <modules>
+        <module>counter</module>
+        <module>hello</module>
+        <module>hello-cdi</module>
+        <module>post-redirect-get</module>
+    </modules>    
 
-   <properties>
-       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-       <netbeans.hint.license>mit</netbeans.hint.license>
-       <maven.compiler.source>1.8</maven.compiler.source>
-       <maven.compiler.target>1.8</maven.compiler.target>
-   </properties>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <netbeans.hint.license>mit</netbeans.hint.license>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
 
-   <dependencyManagement>
-       <dependencies>
-           <dependency>
-               <groupId>javax</groupId>
-               <artifactId>javaee-web-api</artifactId>
-               <version>7.0</version>
-               <scope>provided</scope>
-           </dependency>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>javax</groupId>
+                <artifactId>javaee-web-api</artifactId>
+                <version>7.0</version>
+                <scope>provided</scope>
+            </dependency>
 
-           <!-- Needed until Java EE 8 -->
-           <dependency>
-               <groupId>javax.mvc</groupId>
-               <artifactId>javax.mvc-api</artifactId>
-               <version>1.0-edr2</version>
-           </dependency>
-           <dependency>
-               <groupId>org.glassfish.ozark</groupId>
-               <artifactId>ozark</artifactId>
-               <version>1.0.0-m02</version>
-               <scope>runtime</scope>
-           </dependency>
-       </dependencies>
-   </dependencyManagement>
+            <!-- Needed until Java EE 8 -->
+            <dependency>
+                <groupId>javax.mvc</groupId>
+                <artifactId>javax.mvc-api</artifactId>
+                <version>1.0-edr2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.glassfish.ozark</groupId>
+                <artifactId>ozark</artifactId>
+                <version>1.0.0-m02</version>
+                <scope>runtime</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
-   <modules>
-      <module>counter</module>
-      <module>hello</module>
-      <module>hello-cdi</module>
-   </modules>    
 </project>

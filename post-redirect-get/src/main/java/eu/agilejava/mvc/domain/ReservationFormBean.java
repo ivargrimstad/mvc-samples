@@ -21,23 +21,77 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.agilejava.mvc.config;
+package eu.agilejava.mvc.domain;
 
-import eu.agilejava.mvc.CountController;
-import java.util.Collections;
-import java.util.Set;
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.core.Application;
+import javax.faces.bean.RequestScoped;
+import javax.inject.Named;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.ws.rs.FormParam;
 
 /**
  *
  * @author Ivar Grimstad (ivar.grimstad@gmail.com)
  */
-@ApplicationPath("mvc")
-public class ApplicationConfig extends Application {
+@Named
+@RequestScoped
+public class ReservationFormBean {
 
-    @Override
-    public Set<Class<?>> getClasses() {
-        return Collections.singleton(CountController.class);
+    @FormParam("id") 
+    private String id;
+    
+    @NotNull
+    @Size(min = 2)
+    @FormParam("name")
+    private String name;
+
+    @NotNull
+    @FormParam("count")
+    private int count;
+    
+    @FormParam("date")
+    private String date;
+
+    @FormParam("outside")
+    private boolean outside;
+    
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public boolean isOutside() {
+        return outside;
+    }
+
+    public void setOutside(boolean outside) {
+        this.outside = outside;
     }
 }
