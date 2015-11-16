@@ -21,31 +21,61 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.agilejava.mvc.config;
+package eu.agilejava.mvc.prg;
 
-import eu.agilejava.mvc.prg.ConfirmationController;
-import eu.agilejava.mvc.prg.ReservationController;
+import eu.agilejava.mvc.domain.Reservation;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.core.Application;
+import java.util.UUID;
+import static java.util.stream.Collectors.toList;
+import javax.annotation.PostConstruct;
+import javax.inject.Named;
+import javax.inject.Singleton;
+import javax.validation.constraints.NotNull;
 
 /**
  *
  * @author Ivar Grimstad (ivar.grimstad@gmail.com)
  */
-@ApplicationPath("mvc")
-public class MyApplication extends Application {
+@Named
+@Singleton
+public class ReservationService {
+    
+    private final Set<Reservation> orders;
 
-    @Override
-    public Set<Class<?>> getClasses() {
-
-        Set<Class<?>> classes = new HashSet<>();
-
-        classes.add(ReservationController.class);
-        classes.add(ConfirmationController.class);
-
-        return classes;
+    public ReservationService() {
+        this.orders = new HashSet<>();
     }
-
+    
+    public Reservation save(@NotNull Reservation order) {
+        
+        if(order.getId() == null || order.getId().isEmpty() ) {
+            order.setId(UUID.randomUUID().toString());
+        }
+        orders.remove(order);
+        orders.add(order);
+        
+        return order;
+    }
+    
+    public List<Reservation> findAll() {
+        return orders.stream()
+                     .collect(toList());
+    }
+    
+    public Reservation findById(final String id) {
+        return orders.stream()
+                .filter(o -> o.getId().equals(id)).findFirst().orElse(new Reservation());
+    }
+    
+    public void remove(final String id) {
+        orders.remove(findById(id));
+    }
+    
+    @PostConstruct
+    private void init() {
+        
+    }
+    
 }

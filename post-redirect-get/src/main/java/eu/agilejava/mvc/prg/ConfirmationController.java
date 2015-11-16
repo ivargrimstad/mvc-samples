@@ -21,60 +21,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.agilejava.mvc.order;
+package eu.agilejava.mvc.prg;
 
-import eu.agilejava.mvc.domain.Order;
 import eu.agilejava.mvc.domain.OrderConfirmation;
 import javax.inject.Inject;
 import javax.mvc.annotation.Controller;
 import javax.mvc.annotation.View;
-import javax.validation.Valid;
-import javax.ws.rs.BeanParam;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.core.Response;
 
 /**
  *
  * @author Ivar Grimstad (ivar.grimstad@gmail.com)
  */
 @Controller
-@Path("orders")
-public class OrderController {
-
+@Path("confirmation")
+public class ConfirmationController {
+    
     @Inject
     private OrderConfirmation orderConfirmation;
     
-    @Inject
-    private OrderService orderServce;
-    
-    @View("orders.jsp")
+    @View("confirmation.jsp")
     @GET
-    public void orders() {
-
-    }
-
-    @View("order.jsp")
-    @GET
-    @Path("new")
-    public void newOrder() {
-    }
-    
-    @View("order.jsp")
-    @GET
-    @Path("{id}")
-    public void showOrder() {
+    public void confirmation() {
         
     }
-
-    @POST
-    @Path("new")
-    public Response newOrder(@Valid @BeanParam Order order) {
-
-        orderServce.save(order);
-        orderConfirmation.setId(order.getId());
-        
-        return Response.ok("redirect:confirmation").build();
-    }
+    
 }

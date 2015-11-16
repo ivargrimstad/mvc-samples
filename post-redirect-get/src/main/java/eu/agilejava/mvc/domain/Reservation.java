@@ -21,61 +21,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.agilejava.mvc.order;
+package eu.agilejava.mvc.domain;
 
-import eu.agilejava.mvc.domain.Order;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
-import static java.util.stream.Collectors.toList;
-import javax.annotation.PostConstruct;
+import java.io.Serializable;
 import javax.inject.Named;
-import javax.inject.Singleton;
-import javax.validation.constraints.NotNull;
+import javax.mvc.annotation.RedirectScoped;
 
 /**
  *
  * @author Ivar Grimstad (ivar.grimstad@gmail.com)
  */
 @Named
-@Singleton
-public class OrderService {
+@RedirectScoped
+public class Reservation implements Serializable {
+  
+    private static final long serialVersionUID = 14251616245433L;
     
-    private final Set<Order> orders;
+    private String id;
 
-    public OrderService() {
-        this.orders = new HashSet<>();
+    public String getId() {
+        return id;
     }
-    
-    public Order save(@NotNull Order order) {
-        
-        if(order.getId() == null || order.getId().isEmpty() ) {
-            order.setId(UUID.randomUUID().toString());
-        }
-        orders.remove(order);
-        orders.add(order);
-        
-        return order;
+
+    public void setId(String id) {
+        this.id = id;
     }
-    
-    public List<Order> findAll() {
-        return orders.stream()
-                     .collect(toList());
-    }
-    
-    public Order findById(final String id) {
-        return orders.stream()
-                .filter(o -> o.getId().equals(id)).findFirst().orElse(new Order());
-    }
-    
-    public void remove(final String id) {
-        orders.remove(findById(id));
-    }
-    
-    @PostConstruct
-    private void init() {
-        
-    }
-    
 }

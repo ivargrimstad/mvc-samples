@@ -21,30 +21,60 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.agilejava.mvc.order;
+package eu.agilejava.mvc.prg;
 
+import eu.agilejava.mvc.domain.Reservation;
 import eu.agilejava.mvc.domain.OrderConfirmation;
 import javax.inject.Inject;
 import javax.mvc.annotation.Controller;
 import javax.mvc.annotation.View;
+import javax.validation.Valid;
+import javax.ws.rs.BeanParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.core.Response;
 
 /**
  *
  * @author Ivar Grimstad (ivar.grimstad@gmail.com)
  */
 @Controller
-@Path("confirmation")
-public class ConfirmationController {
-    
+@Path("reservations")
+public class ReservationController {
+
     @Inject
     private OrderConfirmation orderConfirmation;
     
-    @View("confirmation.jsp")
+    @Inject
+    private ReservationService reservationService;
+    
+    @View("orders.jsp")
     @GET
-    public void confirmation() {
-        
+    public void reservations() {
+
+    }
+
+    @View("order.jsp")
+    @GET
+    @Path("new")
+    public void emptyReservation() {
     }
     
+    @View("order.jsp")
+    @GET
+    @Path("{id}")
+    public void showReservation() {
+        
+    }
+
+    @POST
+    @Path("new")
+    public Response newReservation(@Valid @BeanParam Reservation order) {
+
+        reservationService.save(order);
+        orderConfirmation.setId(order.getId());
+        
+        return Response.ok("redirect:confirmation").build();
+    }
 }
