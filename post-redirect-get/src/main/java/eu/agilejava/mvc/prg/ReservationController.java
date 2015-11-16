@@ -23,17 +23,26 @@
  */
 package eu.agilejava.mvc.prg;
 
+import eu.agilejava.mvc.domain.Messages;
 import eu.agilejava.mvc.domain.Reservation;
-import eu.agilejava.mvc.domain.OrderConfirmation;
+import eu.agilejava.mvc.domain.ReservationFormBean;
+import java.text.SimpleDateFormat;
+import static java.util.stream.Collectors.toList;
 import javax.inject.Inject;
 import javax.mvc.annotation.Controller;
+import javax.mvc.annotation.CsrfValid;
 import javax.mvc.annotation.View;
+import javax.mvc.binding.BindingResult;
+import javax.validation.ConstraintViolation;
 import javax.validation.Valid;
+import static javax.validation.executable.ExecutableType.NONE;
+import javax.validation.executable.ValidateOnExecution;
 import javax.ws.rs.BeanParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
+import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
 
 /**
  *
@@ -42,38 +51,48 @@ import javax.ws.rs.core.Response;
 @Controller
 @Path("reservations")
 public class ReservationController {
-
+    
     @Inject
-    private OrderConfirmation orderConfirmation;
+    private Reservation reservation;
     
     @Inject
     private ReservationService reservationService;
     
-    @View("orders.jsp")
-    @GET
-    public void reservations() {
-
-    }
-
-    @View("order.jsp")
+    @Inject
+    private BindingResult br;
+    
+    @Inject
+    private Messages messages;
+    
+    @View("reservation.jsp")
     @GET
     @Path("new")
     public void emptyReservation() {
     }
     
-    @View("order.jsp")
-    @GET
-    @Path("{id}")
-    public void showReservation() {
-        
-    }
-
+    @CsrfValid
     @POST
     @Path("new")
-    public Response newReservation(@Valid @BeanParam Reservation order) {
-
-        reservationService.save(order);
-        orderConfirmation.setId(order.getId());
+    @ValidateOnExecution(type = NONE)
+    public Response createReservation(@Valid @BeanParam ReservationFormBean form) {
+        
+        reservation.setId(form.getId());
+        reservation.setName(form.getName());
+        reservation.setCount(form.getCount());
+        reservation.setDate(form.getDate());
+        reservation.setOutside(form.isOutside());
+        
+        if (br.isFailed()) {
+            messages.setErrors(
+                    br.getAllViolations().stream()
+                    .map(ConstraintViolation::getMessage)
+                    .peek(System.out::println)
+                    .collect(toList()));
+            
+            return Response.status(BAD_REQUEST).entity("reservation.jsp").build();
+        }
+        
+        reservationService.save(reservation);
         
         return Response.ok("redirect:confirmation").build();
     }

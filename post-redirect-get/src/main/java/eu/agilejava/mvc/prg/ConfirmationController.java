@@ -23,7 +23,7 @@
  */
 package eu.agilejava.mvc.prg;
 
-import eu.agilejava.mvc.domain.OrderConfirmation;
+import eu.agilejava.mvc.domain.Reservation;
 import javax.inject.Inject;
 import javax.mvc.annotation.Controller;
 import javax.mvc.annotation.View;
@@ -39,7 +39,7 @@ import javax.ws.rs.Path;
 public class ConfirmationController {
     
     @Inject
-    private OrderConfirmation orderConfirmation;
+    private Reservation reservation;
     
     @View("confirmation.jsp")
     @GET

@@ -25,8 +25,11 @@ package eu.agilejava.mvc.config;
 
 import eu.agilejava.mvc.prg.ConfirmationController;
 import eu.agilejava.mvc.prg.ReservationController;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
+import javax.mvc.security.Csrf;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
@@ -44,8 +47,15 @@ public class MyApplication extends Application {
 
         classes.add(ReservationController.class);
         classes.add(ConfirmationController.class);
+        classes.add(PrimitiveConverterProvider.class);
 
         return classes;
     }
 
+    @Override
+    public Map<String, Object> getProperties() {
+        final Map<String, Object> map = new HashMap<>();
+        map.put(Csrf.CSRF_PROTECTION, Csrf.CsrfOptions.EXPLICIT);
+        return map;
+    }
 }

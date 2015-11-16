@@ -23,27 +23,75 @@
  */
 package eu.agilejava.mvc.domain;
 
-import java.io.Serializable;
+import javax.faces.bean.RequestScoped;
 import javax.inject.Named;
-import javax.mvc.annotation.RedirectScoped;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.ws.rs.FormParam;
 
 /**
  *
  * @author Ivar Grimstad (ivar.grimstad@gmail.com)
  */
 @Named
-@RedirectScoped
-public class OrderConfirmation implements Serializable {
-    
-    private static final long serialVersionUID = 18763458763874658L;
-    
-    private String id;
+@RequestScoped
+public class ReservationFormBean {
 
+    @FormParam("id") 
+    private String id;
+    
+    @NotNull
+    @Size(min = 2)
+    @FormParam("name")
+    private String name;
+
+    @NotNull
+    @FormParam("count")
+    private int count;
+    
+    @FormParam("date")
+    private String date;
+
+    @FormParam("outside")
+    private boolean outside;
+    
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public boolean isOutside() {
+        return outside;
+    }
+
+    public void setOutside(boolean outside) {
+        this.outside = outside;
     }
 }
