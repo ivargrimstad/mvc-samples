@@ -23,8 +23,6 @@
  */
 package eu.agilejava.mvc.prg;
 
-import javax.faces.bean.RequestScoped;
-import javax.inject.Named;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.ws.rs.FormParam;
@@ -33,8 +31,6 @@ import javax.ws.rs.FormParam;
  *
  * @author Ivar Grimstad (ivar.grimstad@gmail.com)
  */
-@Named
-@RequestScoped
 public class ReservationFormBean {
 
     @FormParam("id") 
