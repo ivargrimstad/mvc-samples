@@ -42,8 +42,6 @@ public class ConfirmationController {
     
     @View("confirmation.jsp")
     @GET
-    public void confirmation() {
-        
-    }
-    
+    public void confirmation() {        
+    }   
 }
