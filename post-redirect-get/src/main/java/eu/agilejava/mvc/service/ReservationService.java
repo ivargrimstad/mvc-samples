@@ -21,67 +21,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.agilejava.mvc.domain;
+package eu.agilejava.mvc.service;
 
-import java.io.Serializable;
+import eu.agilejava.mvc.prg.Reservation;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
 import javax.inject.Named;
-import javax.mvc.annotation.RedirectScoped;
+import javax.inject.Singleton;
+import javax.validation.constraints.NotNull;
 
 /**
  *
  * @author Ivar Grimstad (ivar.grimstad@gmail.com)
  */
 @Named
-@RedirectScoped
-public class Reservation implements Serializable {
-
-    private static final long serialVersionUID = 14251616245433L;
-
-    private String id;
-    private String name;
-    private int count;
-    private String date;
-    private boolean outside;
+@Singleton
+public class ReservationService {
     
-    public String getId() {
-        return id;
-    }
+    private final Set<Reservation> reservations =  new HashSet<>();;
 
-    public void setId(String id) {
-        this.id = id;
+    public Reservation save(@NotNull Reservation reservation) {
+        
+        if(reservation.getId() == null || reservation.getId().isEmpty() ) {
+            reservation.setId(UUID.randomUUID().toString());
+        }
+        
+        reservations.remove(reservation);
+        reservations.add(reservation);
+        
+        return reservation;
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public boolean isOutside() {
-        return outside;
-    }
-
-    public void setOutside(boolean outside) {
-        this.outside = outside;
-    }
-
-    
 }

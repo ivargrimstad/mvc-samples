@@ -32,6 +32,7 @@ import java.util.Set;
 import javax.mvc.security.Csrf;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
+import org.glassfish.ozark.Properties;
 
 /**
  *
@@ -55,6 +56,11 @@ public class MyApplication extends Application {
     @Override
     public Map<String, Object> getProperties() {
         final Map<String, Object> map = new HashMap<>();
+       
+        // use cookie for redirect
+        map.put(Properties.REDIRECT_SCOPE_COOKIES, true);
+        
+        // explicit CSRF Protection
         map.put(Csrf.CSRF_PROTECTION, Csrf.CsrfOptions.EXPLICIT);
         return map;
     }
