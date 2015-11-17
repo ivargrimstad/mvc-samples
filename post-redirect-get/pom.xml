@@ -32,7 +32,7 @@
         <dependency>
             <groupId>org.glassfish.ozark</groupId>
             <artifactId>ozark</artifactId>
-            <!--<scope>runtime</scope>-->
+            <scope>compile</scope>
         </dependency>
         
     </dependencies>
