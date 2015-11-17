@@ -81,7 +81,5 @@ public class Reservation implements Serializable {
 
     public void setOutside(boolean outside) {
         this.outside = outside;
-    }
-
-    
+    }    
 }
