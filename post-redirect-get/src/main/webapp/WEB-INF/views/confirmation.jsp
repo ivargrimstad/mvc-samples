@@ -10,10 +10,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Confirmation</title>
     </head>
     <body>
-        <h1>Reservation</h1>
+        <h1>Reservation confirmed</h1>
         <p>
             <label id="item">Id: </label>
             <font color="blue">${reservation.id}</font>
