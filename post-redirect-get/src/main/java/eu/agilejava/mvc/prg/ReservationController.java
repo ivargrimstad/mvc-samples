@@ -78,12 +78,11 @@ public class ReservationController {
         reservation.setCount(form.getCount());
         reservation.setDate(form.getDate());
         reservation.setOutside(form.isOutside());
-        
+
         if (br.isFailed()) {
             messages.setErrors(
                     br.getAllViolations().stream()
                     .map(ConstraintViolation::getMessage)
-                    .peek(System.out::println)
                     .collect(toList()));
             
             return Response.status(BAD_REQUEST).entity("reservation.jsp").build();
@@ -91,6 +90,6 @@ public class ReservationController {
         
         reservationService.save(reservation);
         
-        return Response.ok("redirect:confirmation").build();
+        return Response.ok("redirect:confirmation").build();        
     }
 }

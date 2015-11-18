@@ -12,25 +12,25 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Reservation Form</title>
     </head>
-    <body>
+    <body onload="document.getElementById('outsideCheck').checked = ${reservation.outside};">
         <h1>Reservation</h1>
 
         <form name="form" action="" method="post">
             <p>
                 <label id="item">Name:</label>
-                <input type="text" name="name" />
+                <input type="text" name="name" value="${reservation.name}" />
             </p>
             <p>
                 <label id="count">Count:</label>
-                <input type="text" name="count" />
+                <input type="text" name="count" value="${reservation.count}"/>
             </p>
             <p>
                 <label id="date">Date:</label>
-                <input type="date" name="date" />
+                <input type="date" name="date" value="${reservation.date}"/>
             </p>
             <p>
                 <label id="outside">Outside</label>
-                <input type="checkbox" name="outside"/>
+                <input id="outsideCheck" type="checkbox" name="outside"/>
             </p>
             <p>
                 <input type="submit" value="Save" name="button"/>

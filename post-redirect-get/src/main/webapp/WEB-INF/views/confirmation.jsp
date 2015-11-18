@@ -12,7 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Confirmation</title>
     </head>
-    <body>
+    <body onload="document.getElementById('outsideCheck').checked = ${reservation.outside};">
         <h1>Reservation confirmed</h1>
         <p>
             <label id="item">Id: </label>
@@ -32,7 +32,7 @@
         </p>
         <p>
             <label id="outside">Outside: </label>
-            ${reservation.outside}
+            <input id="outsideCheck" type="checkbox" name="outside" disabled="true"/>
         </p>
         <p/>
     </body>

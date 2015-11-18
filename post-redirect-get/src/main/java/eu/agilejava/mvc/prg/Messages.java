@@ -8,6 +8,7 @@ package eu.agilejava.mvc.prg;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.mvc.annotation.RedirectScoped;
 
@@ -15,7 +16,7 @@ import javax.mvc.annotation.RedirectScoped;
  * @author Ivar Grimstad (ivar.grimstad@gmail.com)
  */
 @Named
-@RedirectScoped
+@RequestScoped
 public class Messages implements Serializable {
 
     private static final long serialVersionUID = 601263646224546642L;

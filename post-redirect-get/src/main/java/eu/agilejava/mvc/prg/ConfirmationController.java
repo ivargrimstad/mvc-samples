@@ -40,8 +40,9 @@ public class ConfirmationController {
     @Inject
     private Reservation reservation;
     
-    @View("confirmation.jsp")
     @GET
-    public void confirmation() {        
-    }   
+    @View("confirmation.jsp")
+    public void confirm() {
+        
+    }
 }
