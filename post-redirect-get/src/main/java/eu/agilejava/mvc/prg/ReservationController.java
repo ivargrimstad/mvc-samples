@@ -23,6 +23,8 @@
  */
 package eu.agilejava.mvc.prg;
 
+import de.chkal.mvctoolbox.core.Toolbox;
+import de.chkal.mvctoolbox.core.message.MvcMessage;
 import eu.agilejava.mvc.service.ReservationService;
 import static java.util.stream.Collectors.toList;
 import javax.inject.Inject;
@@ -61,6 +63,9 @@ public class ReservationController {
     @Inject
     private Messages messages;
     
+    @Inject
+    private Toolbox mvcToolbox;
+    
     @View("reservation.jsp")
     @GET
     @Path("new")
@@ -84,6 +89,9 @@ public class ReservationController {
                     br.getAllViolations().stream()
                     .map(ConstraintViolation::getMessage)
                     .collect(toList()));
+            
+            mvcToolbox.getMessages().add(br);
+            mvcToolbox.getMessages().add(new MvcMessage(MvcMessage.Severity.ERROR, null, "A Global message!"));
             
             return Response.status(BAD_REQUEST).entity("reservation.jsp").build();
         }
