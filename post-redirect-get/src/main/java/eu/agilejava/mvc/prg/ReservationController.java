@@ -26,15 +26,12 @@ package eu.agilejava.mvc.prg;
 import de.chkal.mvctoolbox.core.Toolbox;
 import de.chkal.mvctoolbox.core.message.MvcMessage;
 import eu.agilejava.mvc.service.ReservationService;
-import static java.util.stream.Collectors.toList;
 import javax.inject.Inject;
 import javax.mvc.annotation.Controller;
 import javax.mvc.annotation.CsrfValid;
 import javax.mvc.annotation.View;
 import javax.mvc.binding.BindingResult;
-import javax.validation.ConstraintViolation;
 import javax.validation.Valid;
-import static javax.validation.executable.ExecutableType.NONE;
 import javax.validation.executable.ValidateOnExecution;
 import javax.ws.rs.BeanParam;
 import javax.ws.rs.GET;
@@ -42,6 +39,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
+import static javax.validation.executable.ExecutableType.NONE;
 
 /**
  *
@@ -50,54 +48,48 @@ import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
 @Controller
 @Path("reservations")
 public class ReservationController {
-    
+
     @Inject
     private Reservation reservation;
-    
+
     @Inject
     private ReservationService reservationService;
-    
+
     @Inject
     private BindingResult br;
-    
-    @Inject
-    private Messages messages;
-    
+
     @Inject
     private Toolbox mvcToolbox;
-    
+
     @View("reservation.jsp")
     @GET
     @Path("new")
     public void emptyReservation() {
     }
-    
+
     @CsrfValid
     @POST
     @Path("new")
     @ValidateOnExecution(type = NONE)
     public Response createReservation(@Valid @BeanParam ReservationFormBean form) {
-        
+
         reservation.setId(form.getId());
-        reservation.setName(form.getName());
-        reservation.setCount(form.getCount());
+        reservation.setName(form.getContact());
+        reservation.setCount(Integer.parseInt(form.getCount()));
         reservation.setDate(form.getDate());
         reservation.setOutside(form.isOutside());
 
         if (br.isFailed()) {
-            messages.setErrors(
-                    br.getAllViolations().stream()
-                    .map(ConstraintViolation::getMessage)
-                    .collect(toList()));
-            
+
             mvcToolbox.getMessages().add(br);
+           
             mvcToolbox.getMessages().add(new MvcMessage(MvcMessage.Severity.ERROR, null, "A Global message!"));
-            
+
             return Response.status(BAD_REQUEST).entity("reservation.jsp").build();
         }
-        
+
         reservationService.save(reservation);
-        
-        return Response.ok("redirect:confirmation").build();        
+
+        return Response.ok("redirect:confirmation").build();
     }
 }

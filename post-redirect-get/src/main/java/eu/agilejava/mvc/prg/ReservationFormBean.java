@@ -39,11 +39,12 @@ public class ReservationFormBean {
     @NotNull
     @Size(min = 2)
     @FormParam("name")
-    private String name;
+    private String contact;
 
     @NotNull
+    @Size(min=2, max=10)
     @FormParam("count")
-    private int count;
+    private String count;
     
     @FormParam("date")
     private String date;
@@ -59,19 +60,19 @@ public class ReservationFormBean {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getContact() {
+        return contact;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setContact(String contact) {
+        this.contact = contact;
     }
 
-    public int getCount() {
+    public String getCount() {
         return count;
     }
 
-    public void setCount(int count) {
+    public void setCount(String count) {
         this.count = count;
     }
 
