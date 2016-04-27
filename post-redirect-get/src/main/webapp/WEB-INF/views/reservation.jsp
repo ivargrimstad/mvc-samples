@@ -19,18 +19,15 @@
             <p>
                 <label id="item">Name:</label>
                 <input type="text" name="name" value="${reservation.name}" />
-                <font color="red">${mvc.encoders.html(toolbox.messages.getMessage("name").text)}</font>
             </p>
             <p>
                 <label id="count">Count:</label>
                 <input type="text" name="count" value="${reservation.count}"/>
-                <font color="red">${mvc.encoders.html(toolbox.messages.getMessage("count").text)}</font>
             </p>
             <p>
                 <label id="date">Date:</label>
                 <input type="date" name="date" value="${reservation.date}"/>
-                <font color="red">${mvc.encoders.html(toolbox.messages.getMessage("date").text)}</font>
-                </p>
+            </p>
             <p>
                 <label id="outside">Outside</label>
                 <input id="outsideCheck" type="checkbox" name="outside"/>
@@ -43,12 +40,10 @@
         </form>
         <p/>
         
-        <c:if test="${not empty toolbox.messages.errors}">
+        <c:if test="${not empty messages.errors}">
             <ul>
-                <c:forEach var="error" items="${toolbox.messages.errors}">
-                    <c:if test="${error.global}">
-                        <li><font color="red">${mvc.encoders.html(error.text)}</font></li>
-                    </c:if>
+                <c:forEach var="error" items="${messages.errors}">
+                    <li><font color="red">${mvc.encoders.html(error)}</font></li>
                  </c:forEach>
             </ul>
         </c:if>

@@ -42,9 +42,8 @@ public class ReservationFormBean {
     private String contact;
 
     @NotNull
-    @Size(min=2, max=10)
     @FormParam("count")
-    private String count;
+    private int count;
     
     @FormParam("date")
     private String date;
@@ -68,11 +67,11 @@ public class ReservationFormBean {
         this.contact = contact;
     }
 
-    public String getCount() {
+    public int getCount() {
         return count;
     }
 
-    public void setCount(String count) {
+    public void setCount(int count) {
         this.count = count;
     }
 
