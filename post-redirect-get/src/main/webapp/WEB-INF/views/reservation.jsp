@@ -16,6 +16,7 @@
         <h1>Reservation</h1>
 
         <form name="form" action="" method="post">
+            <input type="hidden" name="id" value="${reservation.id}"/>
             <p>
                 <label id="item">Name:</label>
                 <input type="text" name="name" value="${reservation.name}" />
@@ -35,7 +36,6 @@
             <p>
                 <input type="submit" value="Save" name="button"/>
             </p>
-            <input type="hidden" name="id" value="${reservation.id}"/>
             <input type="hidden" name="${mvc.csrf.name}" value="${mvc.csrf.token}"/>
         </form>
         <p/>
