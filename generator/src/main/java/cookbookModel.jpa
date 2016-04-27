@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<jpa:entity-mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:java="http://jcp.org/en/jsr/detail?id=270" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jpa="http://java.sun.com/xml/ns/persistence/orm" v="1.5.4" xs="false" id="_14617685889401" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd">
+<jpa:entity-mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:java="http://jcp.org/en/jsr/detail?id=270" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jpa="http://java.sun.com/xml/ns/persistence/orm" pkg="eu.agilejava.mvc.entities" v="1.5.4" xs="false" id="_14617685889401" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd">
     <jpa:entity xre="false" sm="false" abs="false" class="Recipe" visibile="true" minimized="false" rootElement="_14617685889401" id="_1461768592772">
         <jpa:attributes>
             <basic attribute-type="String" visibile="true" name="title" id="_14617686062084">
@@ -11,7 +11,10 @@
             <basic attribute-type="String" visibile="true" name="instructions" id="_14617686096016">
                 <bv/>
             </basic>
-            <jpa:id attribute-type="Long" visibile="true" name="id" id="_14617685928362"/>
+            <jpa:id attribute-type="Long" visibile="true" name="id" id="_14617685928362">
+                <bv/>
+                <jpa:generated-value/>
+            </jpa:id>
         </jpa:attributes>
     </jpa:entity>
     <jpa:entity xre="false" sm="false" abs="false" class="CookBook" visibile="true" minimized="false" rootElement="_14617685889401" id="_1461768642122">
@@ -27,9 +30,11 @@
                     <si ma="255"/>
                 </bv>
             </basic>
-            <many-to-one primaryKey="false" connected-entity-id="_1461768738948" connected-attribute-id="_146176925693420" visibile="true" name="owner" id="_146176925693319"/>
+            <many-to-one optional="true" primaryKey="false" connected-entity-id="_1461768738948" connected-attribute-id="_146176925693420" visibile="true" name="owner" id="_146176925693319"/>
             <one-to-many own="true" collection-type="java.util.List" connected-entity-id="_1461768592772" visibile="true" name="recipes" id="_146176870125611"/>
-            <jpa:id attribute-type="Long" visibile="true" name="id" id="_14617686421247"/>
+            <jpa:id attribute-type="Long" visibile="true" name="id" id="_14617686421247">
+                <bv/>
+            </jpa:id>
         </jpa:attributes>
     </jpa:entity>
     <jpa:entity xre="false" sm="false" abs="false" class="Owner" visibile="true" minimized="false" rootElement="_14617685889401" id="_1461768738948">
@@ -47,11 +52,15 @@
             <basic attribute-type="String" visibile="true" name="email" id="_146176877148416">
                 <bv>
                     <nn/>
-                    <pt r="[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}"/>
+                    <pt r=".+@.+..+"/>
+                    <dma/>
                 </bv>
             </basic>
             <one-to-many collection-type="java.util.List" connected-entity-id="_1461768642122" connected-attribute-id="_146176925693319" visibile="true" name="cookBooks" id="_146176925693420"/>
-            <jpa:id attribute-type="Long" visibile="true" name="id" id="_146176873895012"/>
+            <jpa:id attribute-type="Long" visibile="true" name="id" id="_146176873895012">
+                <bv/>
+                <jpa:generated-value strategy="AUTO"/>
+            </jpa:id>
         </jpa:attributes>
     </jpa:entity>
     <jpa:c>
