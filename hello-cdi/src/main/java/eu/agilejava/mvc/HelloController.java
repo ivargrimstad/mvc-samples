@@ -48,7 +48,7 @@ public class HelloController {
 
     @Inject
     private BindingResult validationResult;
-
+    
     @Inject
     private ErrorBean error;
 
