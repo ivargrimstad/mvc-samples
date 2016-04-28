@@ -33,7 +33,7 @@ import javax.ws.rs.core.Application;
  *
  * @author Ivar Grimstad (ivar.grimstad@gmail.com)
  */
-@ApplicationPath("mvc")
+@ApplicationPath("mvc-cdi")
 public class ApplicationConfig extends Application {
 
     @Override
