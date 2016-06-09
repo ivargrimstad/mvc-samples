@@ -23,11 +23,9 @@
  */
 package eu.agilejava.mvc;
 
-import java.util.Set;
 import javax.inject.Inject;
 import javax.mvc.annotation.Controller;
 import javax.mvc.binding.BindingResult;
-import javax.validation.ConstraintViolation;
 import javax.validation.Valid;
 import javax.validation.executable.ExecutableType;
 import javax.validation.executable.ValidateOnExecution;

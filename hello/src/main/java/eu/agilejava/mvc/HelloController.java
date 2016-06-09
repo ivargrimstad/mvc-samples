@@ -23,14 +23,11 @@
  */
 package eu.agilejava.mvc;
 
-import java.util.Set;
 import javax.inject.Inject;
 import javax.mvc.Models;
 import javax.mvc.annotation.Controller;
 import javax.mvc.annotation.View;
 import javax.mvc.binding.BindingResult;
-import javax.mvc.binding.ValidationError;
-import javax.validation.ConstraintViolation;
 import javax.validation.Valid;
 import javax.validation.executable.ExecutableType;
 import javax.validation.executable.ValidateOnExecution;
