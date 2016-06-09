@@ -29,6 +29,7 @@ import javax.mvc.Models;
 import javax.mvc.annotation.Controller;
 import javax.mvc.annotation.View;
 import javax.mvc.binding.BindingResult;
+import javax.mvc.binding.ValidationError;
 import javax.validation.ConstraintViolation;
 import javax.validation.Valid;
 import javax.validation.executable.ExecutableType;
@@ -69,13 +70,13 @@ public class HelloController {
     public Response formPost(@Valid @BeanParam HelloBean form) {
 
         if (validationResult.isFailed()) {
-            final Set<ConstraintViolation<?>> set = validationResult.getAllViolations();
-            final ConstraintViolation<?> cv = set.iterator().next();
-            final String property = cv.getPropertyPath().toString();
 
-            models.put("property", property.substring(property.lastIndexOf('.') + 1));
-            models.put("value", cv.getInvalidValue());
-            models.put("message", cv.getMessage());
+            validationResult.getAllValidationErrors().stream()
+                    .forEach(v -> {
+                        models.put("property", v.getParamName());
+                        models.put("value", v.getViolation().getInvalidValue());
+                        models.put("message", v.getMessage());
+                    });
 
             return Response.status(BAD_REQUEST).entity("error.jsp").build();
         }

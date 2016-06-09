@@ -48,7 +48,7 @@ public class HelloController {
 
     @Inject
     private BindingResult validationResult;
-    
+
     @Inject
     private ErrorBean error;
 
@@ -57,13 +57,13 @@ public class HelloController {
     public Response formPost(@Valid @BeanParam HelloBean form) {
 
         if (validationResult.isFailed()) {
-            final Set<ConstraintViolation<?>> set = validationResult.getAllViolations();
-            final ConstraintViolation<?> cv = set.iterator().next();
-            final String property = cv.getPropertyPath().toString();
 
-            error.setProperty(property.substring(property.lastIndexOf('.') + 1));
-            error.setValue(cv.getInvalidValue());
-            error.setMessage(cv.getMessage());
+            validationResult.getAllValidationErrors().stream()
+                    .forEach(v -> {
+                        error.setProperty(v.getParamName());
+                        error.setValue(v.getViolation().getInvalidValue());
+                        error.setMessage(v.getMessage());
+                    });
 
             return Response.status(BAD_REQUEST).entity("error.jsp").build();
         }

@@ -26,11 +26,12 @@ package eu.agilejava.mvc.prg;
 import eu.agilejava.mvc.service.ReservationService;
 import static java.util.stream.Collectors.toList;
 import javax.inject.Inject;
+import javax.mvc.MvcContext;
 import javax.mvc.annotation.Controller;
 import javax.mvc.annotation.CsrfValid;
 import javax.mvc.annotation.View;
 import javax.mvc.binding.BindingResult;
-import javax.validation.ConstraintViolation;
+import javax.mvc.binding.ValidationError;
 import javax.validation.Valid;
 import static javax.validation.executable.ExecutableType.NONE;
 import javax.validation.executable.ValidateOnExecution;
@@ -81,8 +82,7 @@ public class ReservationController {
 
         if (br.isFailed()) {
             messages.setErrors(
-                    br.getAllViolations().stream()
-                    .map(ConstraintViolation::getMessage)
+                    br.getAllValidationErrors().stream()
                     .collect(toList()));
             
             return Response.status(BAD_REQUEST).entity("reservation.jsp").build();

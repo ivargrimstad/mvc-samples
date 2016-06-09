@@ -23,7 +23,10 @@
  */
 package eu.agilejava.mvc.prg;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.ws.rs.FormParam;
 
@@ -41,10 +44,12 @@ public class ReservationFormBean {
     @FormParam("name")
     private String contact;
 
-    @NotNull
+    @Min(1)
+    @Max(10)
     @FormParam("count")
     private int count;
-    
+
+    @Pattern(regexp = "[0-9]{4}-[0-9]{2}-[0-9]{2}", message = "Enter a valid date")
     @FormParam("date")
     private String date;
 

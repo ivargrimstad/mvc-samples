@@ -8,9 +8,10 @@ package eu.agilejava.mvc.prg;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import static java.util.stream.Collectors.toList;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
-import javax.mvc.annotation.RedirectScoped;
+import javax.mvc.binding.ValidationError;
 
 /**
  * @author Ivar Grimstad (ivar.grimstad@gmail.com)
@@ -21,13 +22,23 @@ public class Messages implements Serializable {
 
     private static final long serialVersionUID = 601263646224546642L;
 
-    private List<String> errors = new ArrayList();
+    private List<ValidationError> errors = new ArrayList<>();
 
-    public List<String> getErrors() {
-        return errors;
-    }
-
-    public void setErrors(List<String> messages) {
+    public void setErrors(List<ValidationError> messages) {
         this.errors = messages;
+    }
+    
+    public List<String> getErrors() {
+        return errors.stream()
+                .map(ValidationError::getMessage)
+                .collect(toList());
+    }
+    
+    public String getMessage(String param) {
+        return errors.stream()
+                .filter(v -> {return v.getParamName().equals(param);})
+                .map(ValidationError::getMessage)
+                .findFirst()
+                .orElse("");
     }
 }
