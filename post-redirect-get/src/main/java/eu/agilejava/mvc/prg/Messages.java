@@ -36,7 +36,7 @@ public class Messages implements Serializable {
     
     public String getMessage(String param) {
         return errors.stream()
-                .filter(v -> {return v.getParamName().equals(param);})
+                .filter(v -> v.getParamName().equals(param))
                 .map(ValidationError::getMessage)
                 .findFirst()
                 .orElse("");
