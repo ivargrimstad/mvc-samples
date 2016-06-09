@@ -29,12 +29,14 @@
         <dependency>
             <groupId>javax.mvc</groupId>
             <artifactId>javax.mvc-api</artifactId>
+            <version>1.0-edr2</version>
         </dependency>
         <dependency>
             <groupId>org.glassfish.ozark</groupId>
             <artifactId>ozark</artifactId>
             <scope>runtime</scope>
+            <version>1.0.0-m02</version>
         </dependency>  
-    </dependencies>
+     </dependencies>
    
 </project>
