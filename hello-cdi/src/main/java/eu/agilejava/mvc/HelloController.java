@@ -23,13 +23,16 @@
  */
 package eu.agilejava.mvc;
 
+import static java.util.stream.Collectors.toList;
 import javax.inject.Inject;
 import javax.mvc.annotation.Controller;
+import javax.mvc.annotation.View;
 import javax.mvc.binding.BindingResult;
 import javax.validation.Valid;
 import javax.validation.executable.ExecutableType;
 import javax.validation.executable.ValidateOnExecution;
 import javax.ws.rs.BeanParam;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
@@ -45,25 +48,26 @@ import static javax.ws.rs.core.Response.Status.OK;
 public class HelloController {
 
     @Inject
-    private BindingResult validationResult;
+    private BindingResult br;
 
     @Inject
-    private ErrorBean error;
-
+    private Messages messages;
+    
+    @GET
+    @View("form.jsp")
+    public void form() {
+    }
+    
     @POST
     @ValidateOnExecution(type = ExecutableType.NONE)
     public Response formPost(@Valid @BeanParam HelloBean form) {
 
-        if (validationResult.isFailed()) {
+        if (br.isFailed()) {
+            messages.setErrors(
+                    br.getAllValidationErrors().stream()
+                    .collect(toList()));
 
-            validationResult.getAllValidationErrors().stream()
-                    .forEach(v -> {
-                        error.setProperty(v.getParamName());
-                        error.setValue(v.getViolation().getInvalidValue());
-                        error.setMessage(v.getMessage());
-                    });
-
-            return Response.status(BAD_REQUEST).entity("error.jsp").build();
+            return Response.status(BAD_REQUEST).entity("form.jsp").build();
         }
 
         return Response.status(OK).entity("hello.jsp").build();

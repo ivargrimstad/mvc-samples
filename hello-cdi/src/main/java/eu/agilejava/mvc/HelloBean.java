@@ -43,7 +43,7 @@ public class HelloBean {
     private String firstName;
 
     @NotNull
-    @Size(min = 1, max = 24)
+    @Size(min = 2, max = 24)
     @FormParam("lastName")
     private String lastName;
 
