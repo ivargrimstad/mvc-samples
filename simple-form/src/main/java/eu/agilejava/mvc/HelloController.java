@@ -23,14 +23,8 @@
  */
 package eu.agilejava.mvc;
 
-import javax.inject.Inject;
-import javax.mvc.Models;
-import javax.mvc.MvcContext;
 import javax.mvc.annotation.Controller;
-import javax.mvc.annotation.CsrfValid;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 
 /**
@@ -41,22 +35,16 @@ import javax.ws.rs.Path;
 @Controller
 public class HelloController {
 
-    @Inject
-    private Models model;
-    
-    @Inject
-    private MvcContext mvc;
-    
     @GET
     public String view() {
-        return "form.jsp";
-    }
-    
-    @CsrfValid
-    @POST
-    public String hello(@FormParam("name") String name) {
-        System.out.println(mvc.getLocale());
-        model.put("name", name);
         return "hello.jsp";
     }
+
+
+    // return form.jsp from @GET
+    // @POST method with form param name
+    // add models
+    // add csrf
+    // locale
+    // events
 }
