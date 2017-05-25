@@ -17,7 +17,7 @@
         <form method="post" action="hello">
             Name: <input type="text" name="name"/>
             <input type ="submit"/>
-            <input type="hidden" name="${mvc.csrf.name}" value="${mvc.csrf.token}"/>
+            <!--<input type="hidden" name="${mvc.csrf.name}" value="${mvc.csrf.token}"/>-->
         </form>
     </body>
 </html>

@@ -23,6 +23,8 @@
  */
 package eu.agilejava.mvc;
 
+import javax.inject.Inject;
+import javax.mvc.Models;
 import javax.mvc.annotation.Controller;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -35,11 +37,14 @@ import javax.ws.rs.Path;
 @Controller
 public class HelloController {
 
+    @Inject
+    private Models model;
+
     @GET
     public String view() {
+        model.put("message", "Hello Warsaw!");
         return "hello.jsp";
     }
-
 
     // return form.jsp from @GET
     // @POST method with form param name
