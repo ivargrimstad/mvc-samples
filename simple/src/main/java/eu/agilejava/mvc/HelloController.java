@@ -39,4 +39,7 @@ public class HelloController {
     public String view() {
         return "hello.jsp";
     }
+    
+    // Add model
+    // Update view
 }

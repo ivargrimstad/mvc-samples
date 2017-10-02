@@ -42,7 +42,7 @@ public class HelloController {
 
     @GET
     public String view() {
-        model.put("message", "Hello JavaOne!");
+        model.put("message", "Hello, JavaOne!");
         return "hello.jsp";
     }
 
