@@ -31,7 +31,7 @@ import java.util.Set;
 import javax.mvc.security.Csrf;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
-import org.glassfish.ozark.Properties;
+import org.mvcspec.ozark.Properties;
 
 /**
  *

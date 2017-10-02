@@ -26,58 +26,15 @@
             <scope>provided</scope>
         </dependency>
       
-        <!-- Needed until Java EE 8 -->
         <dependency>
             <groupId>javax.mvc</groupId>
             <artifactId>javax.mvc-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.glassfish.ozark</groupId>
-            <artifactId>ozark</artifactId>
+            <groupId>org.mvc-spec.ozark</groupId>
+            <artifactId>ozark-core</artifactId>
             <scope>compile</scope>
         </dependency>  
     </dependencies>
    
-    <profiles>
-        <profile>
-            <id>payara</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>io.fabric8</groupId>
-                        <artifactId>docker-maven-plugin</artifactId>
-                        <version>${version.docker-maven-plugin}</version>
-                        <configuration>
-                            <images>
-                                <image>
-                                    <alias>payara</alias>
-                                    <name>ivargrimstad/${project.artifactId}:payara</name>
-                                    <build>
-                                        <maintainer>Ivar Grimstad (ivar.grimstad@gmail.com)</maintainer>
-                                        <from>payara/server-web:163</from>
-                                        <assembly>
-                                            <basedir>/opt/payara41/glassfish/domains/domain1/autodeploy/</basedir>
-                                            <descriptorRef>artifact</descriptorRef>
-                                        </assembly>
-                                        <entryPoint>
-                                            <arg>/opt/payara41/bin/asadmin</arg>
-                                            <arg>start-domain</arg>
-                                            <arg>-v</arg>
-                                        </entryPoint>
-                                    </build>
-                                    <run>
-                                        <ports>
-                                            <port>8082:8080</port>
-                                        </ports>
-                                    </run>
-                                </image>
-
-                            </images>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
-    
 </project>

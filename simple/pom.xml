@@ -40,8 +40,8 @@
             </activation>
             <dependencies>
                 <dependency>
-                    <groupId>org.glassfish.ozark</groupId>
-                    <artifactId>ozark</artifactId>
+                    <groupId>org.mvc-spec.ozark</groupId>
+                    <artifactId>ozark-core</artifactId>
                     <scope>runtime</scope>
                 </dependency>  
             </dependencies>
@@ -67,8 +67,8 @@
             <id>glassfish-docker</id>
             <dependencies>
                 <dependency>
-                    <groupId>org.glassfish.ozark</groupId>
-                    <artifactId>ozark</artifactId>
+                    <groupId>org.mvc-spec.ozark</groupId>
+                    <artifactId>ozark-core</artifactId>
                     <scope>runtime</scope>
                 </dependency>  
             </dependencies>
