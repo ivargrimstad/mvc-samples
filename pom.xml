@@ -29,11 +29,10 @@
             <dependency>
                 <groupId>javax</groupId>
                 <artifactId>javaee-web-api</artifactId>
-                <version>7.0</version>
+                <version>8.0</version>
                 <scope>provided</scope>
             </dependency>
 
-            <!-- Needed until Java EE 8 -->
             <dependency>
                 <groupId>javax.mvc</groupId>
                 <artifactId>javax.mvc-api</artifactId>
@@ -52,16 +51,6 @@
         <repository>
             <id>sonatype-oss-snapshots</id>
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>agilejava</id>
-            <url>http://nexus.agilejava.eu/content/groups/public/</url>
             <releases>
                 <enabled>false</enabled>
             </releases>
