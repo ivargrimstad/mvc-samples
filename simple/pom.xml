@@ -42,8 +42,11 @@
                 <dependency>
                     <groupId>org.mvc-spec.ozark</groupId>
                     <artifactId>ozark-core</artifactId>
-                    <scope>runtime</scope>
                 </dependency>  
+                <dependency>
+                    <groupId>org.mvc-spec.ozark</groupId>
+                    <artifactId>ozark-jersey</artifactId>
+                </dependency>
             </dependencies>
         </profile>
         
@@ -53,12 +56,10 @@
                 <dependency>
                     <groupId>org.mvc-spec.ozark</groupId>
                     <artifactId>ozark-core</artifactId>
-                    <version>1.0.0-m03-SNAPSHOT</version>
                 </dependency>
                 <dependency>
                     <groupId>org.mvc-spec.ozark</groupId>
                     <artifactId>ozark-resteasy</artifactId>
-                    <version>1.0.0-m03-SNAPSHOT</version>
                 </dependency>
             </dependencies>
         </profile>
@@ -69,8 +70,11 @@
                 <dependency>
                     <groupId>org.mvc-spec.ozark</groupId>
                     <artifactId>ozark-core</artifactId>
-                    <scope>runtime</scope>
-                </dependency>  
+                </dependency>
+                <dependency>
+                    <groupId>org.mvc-spec.ozark</groupId>
+                    <artifactId>ozark-jersey</artifactId>
+                </dependency>
             </dependencies>
             <build>
                 <plugins>
@@ -81,7 +85,7 @@
                         <configuration>
                             <images>
                                 <image>
-                                    <alias>payara</alias>
+                                    <alias>glassfish</alias>
                                     <name>ivargrimstad/${project.artifactId}:glassfish</name>
                                     <build>
                                         <maintainer>Ivar Grimstad (ivar.grimstad@gmail.com)</maintainer>
@@ -115,12 +119,10 @@
                 <dependency>
                     <groupId>org.mvc-spec.ozark</groupId>
                     <artifactId>ozark-core</artifactId>
-                    <version>1.0.0-m03-SNAPSHOT</version>
                 </dependency>
                 <dependency>
                     <groupId>org.mvc-spec.ozark</groupId>
                     <artifactId>ozark-resteasy</artifactId>
-                    <version>1.0.0-m03-SNAPSHOT</version>
                 </dependency>
             </dependencies>
             <build>

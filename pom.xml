@@ -43,6 +43,16 @@
                 <artifactId>ozark-core</artifactId>
                 <version>1.0.0-m03-SNAPSHOT</version>
             </dependency>
+            <dependency>
+                <groupId>org.mvc-spec.ozark</groupId>
+                <artifactId>ozark-jersey</artifactId>
+                <version>1.0.0-m03-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mvc-spec.ozark</groupId>
+                <artifactId>ozark-resteasy</artifactId>
+                <version>1.0.0-m03-SNAPSHOT</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
