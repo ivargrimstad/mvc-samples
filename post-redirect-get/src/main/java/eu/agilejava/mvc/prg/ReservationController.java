@@ -47,31 +47,31 @@ import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
 @Controller
 @Path("reservations")
 public class ReservationController {
-    
+
     @Inject
     private Reservation reservation;
-    
+
     @Inject
     private ReservationService reservationService;
-    
+
     @Inject
     private BindingResult br;
-    
+
     @Inject
     private Messages messages;
-    
+
     @GET
     @View("reservation.jsp")
     @Path("new")
     public void emptyReservation() {
     }
-    
+
     @CsrfValid
     @POST
     @Path("new")
     @ValidateOnExecution(type = NONE)
     public Response createReservation(@Valid @BeanParam ReservationFormBean form) {
-        
+
         reservation.setId(form.getId());
         reservation.setName(form.getContact());
         reservation.setCount(form.getCount());
@@ -81,13 +81,13 @@ public class ReservationController {
         if (br.isFailed()) {
             messages.setErrors(
                     br.getAllValidationErrors().stream()
-                    .collect(toList()));
-            
+                            .collect(toList()));
+
             return Response.status(BAD_REQUEST).entity("reservation.jsp").build();
         }
-        
+
         reservationService.save(reservation);
-        
-        return Response.ok("redirect:confirmation").build();        
+
+        return Response.ok("redirect:confirmation").build();
     }
 }

@@ -21,6 +21,7 @@
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
+            <version>7.0</version>
             <scope>provided</scope>
         </dependency>
 
@@ -31,7 +32,10 @@
         <dependency>
             <groupId>org.mvc-spec.ozark</groupId>
             <artifactId>ozark-core</artifactId>
-            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mvc-spec.ozark</groupId>
+            <artifactId>ozark-resteasy</artifactId>
         </dependency>
                 
     </dependencies>
