@@ -43,6 +43,6 @@ public class ConfirmationController {
     @GET
     @View("confirmation.jsp")
     public void confirm() {
-        
+    
     }
 }

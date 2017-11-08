@@ -82,7 +82,7 @@ public class ReservationController {
             messages.setErrors(
                     br.getAllValidationErrors().stream()
                             .collect(toList()));
-
+            
             return Response.status(BAD_REQUEST).entity("reservation.jsp").build();
         }
 
