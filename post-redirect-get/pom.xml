@@ -15,13 +15,14 @@
     <properties>
         <netbeans.hint.license>mit</netbeans.hint.license>
         <failOnMissingWebXml>false</failOnMissingWebXml>
+        <version.docker-maven-plugin>0.22.1</version.docker-maven-plugin>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
-            <version>8.0</version>
+            <version>7.0</version>
             <scope>provided</scope>
         </dependency>
 
@@ -35,9 +36,55 @@
         </dependency>
         <dependency>
             <groupId>org.mvc-spec.ozark</groupId>
-            <artifactId>ozark-resteasy</artifactId>
+            <artifactId>ozark-jersey</artifactId>
         </dependency>
                 
     </dependencies>
 
+    <profiles>
+        
+        <profile>
+            <id>wildfly-docker</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.mvc-spec.ozark</groupId>
+                    <artifactId>ozark-core</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.mvc-spec.ozark</groupId>
+                    <artifactId>ozark-resteasy</artifactId>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>io.fabric8</groupId>
+                        <artifactId>docker-maven-plugin</artifactId>
+                        <version>${version.docker-maven-plugin}</version>
+                        <configuration>
+                            <images>
+                                <image>
+                                    <alias>wildfly</alias>
+                                    <name>ivargrimstad/${project.artifactId}:wildfly</name>
+                                    <build>
+                                        <maintainer>Ivar Grimstad (ivar.grimstad@gmail.com)</maintainer>
+                                        <from>jboss/wildfly:11.0.0.Final</from>
+                                        <assembly>
+                                            <basedir>/opt/jboss/wildfly/standalone/deployments/</basedir>
+                                            <descriptorRef>artifact</descriptorRef>
+                                        </assembly>
+                                    </build>
+                                    <run>
+                                        <ports>
+                                            <port>8080:8080</port>
+                                        </ports>
+                                    </run>
+                                </image>
+                            </images>
+                        </configuration>                    
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
