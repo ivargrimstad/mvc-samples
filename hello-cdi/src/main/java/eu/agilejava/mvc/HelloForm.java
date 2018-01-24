@@ -21,13 +21,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.agilejava.mvc.prg;
+package eu.agilejava.mvc;
 
 import javax.mvc.binding.MvcBinding;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.ws.rs.FormParam;
 
@@ -35,68 +32,34 @@ import javax.ws.rs.FormParam;
  *
  * @author Ivar Grimstad (ivar.grimstad@gmail.com)
  */
-public class ReservationFormBean {
+public class HelloForm {
 
-    @FormParam("id") 
-    private String id;
-    
     @MvcBinding
     @NotNull
-    @Size(min = 2)
-    @FormParam("name")
-    private String contact;
+    @Size(min = 1, max = 16)
+    @FormParam("firstName")
+    private String firstName;
 
     @MvcBinding
-    @Min(1)
-    @Max(10)
-    @FormParam("count")
-    private int count;
+    @NotNull
+    @Size(min = 2, max = 24)
+    @FormParam("lastName")
+    private String lastName;
 
-    @MvcBinding
-    @Pattern(regexp = "[0-9]{4}-[0-9]{2}-[0-9]{2}", message = "Enter a valid date")
-    @FormParam("date")
-    private String date;
-
-    @FormParam("outside")
-    private boolean outside;
-    
-    public String getId() {
-        return id;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getContact() {
-        return contact;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setContact(String contact) {
-        this.contact = contact;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public boolean isOutside() {
-        return outside;
-    }
-
-    public void setOutside(boolean outside) {
-        this.outside = outside;
-    }
 }

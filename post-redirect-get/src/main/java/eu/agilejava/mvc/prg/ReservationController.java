@@ -31,8 +31,6 @@ import javax.mvc.annotation.CsrfValid;
 import javax.mvc.annotation.View;
 import javax.mvc.binding.BindingResult;
 import javax.validation.Valid;
-import static javax.validation.executable.ExecutableType.NONE;
-import javax.validation.executable.ValidateOnExecution;
 import javax.ws.rs.BeanParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -69,7 +67,6 @@ public class ReservationController {
     @CsrfValid
     @POST
     @Path("new")
-    @ValidateOnExecution(type = NONE)
     public Response createReservation(@Valid @BeanParam ReservationFormBean form) {
 
         reservation.setId(form.getId());

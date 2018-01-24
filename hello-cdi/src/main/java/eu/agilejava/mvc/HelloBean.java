@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2015 Ivar Grimstad (ivar.grimstad@gmail.com).
+ * Copyright 2018 Ivar Grimstad (ivar.grimstad@gmail.com).
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,26 +25,16 @@ package eu.agilejava.mvc;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import javax.ws.rs.FormParam;
 
 /**
  *
  * @author Ivar Grimstad (ivar.grimstad@gmail.com)
  */
-@Named
+@Named("hello")
 @RequestScoped
 public class HelloBean {
-
-    @NotNull
-    @Size(min = 1, max = 16)
-    @FormParam("firstName")
+    
     private String firstName;
-
-    @NotNull
-    @Size(min = 2, max = 24)
-    @FormParam("lastName")
     private String lastName;
 
     public String getFirstName() {
@@ -62,5 +52,6 @@ public class HelloBean {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
+    
+    
 }

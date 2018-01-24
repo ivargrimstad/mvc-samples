@@ -18,22 +18,30 @@
         <failOnMissingWebXml>false</failOnMissingWebXml>
     </properties>
     
-    <dependencies>
-        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-web-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-      
-        <dependency>
-            <groupId>javax.mvc</groupId>
-            <artifactId>javax.mvc-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.mvc-spec.ozark</groupId>
-            <artifactId>ozark-core</artifactId>
-            <scope>runtime</scope>
-        </dependency>  
-    </dependencies>
-   
+     <profiles>      
+        <profile>
+            <id>glassfish</id>
+            <activation>
+                <activeByDefault>true></activeByDefault>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>org.mvc-spec.ozark</groupId>
+                    <artifactId>ozark-jersey</artifactId>
+                    <scope>runtime</scope>
+                </dependency>
+            </dependencies>
+        </profile>     
+        <profile>
+            <id>wildfly</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.mvc-spec.ozark</groupId>
+                    <artifactId>ozark-resteasy</artifactId>
+                    <scope>runtime</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
+    
 </project>

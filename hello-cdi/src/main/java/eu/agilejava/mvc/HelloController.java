@@ -29,8 +29,6 @@ import javax.mvc.annotation.Controller;
 import javax.mvc.annotation.View;
 import javax.mvc.binding.BindingResult;
 import javax.validation.Valid;
-import javax.validation.executable.ExecutableType;
-import javax.validation.executable.ValidateOnExecution;
 import javax.ws.rs.BeanParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -53,14 +51,16 @@ public class HelloController {
     @Inject
     private Messages messages;
     
+    @Inject
+    private HelloBean helloBean;
+    
     @GET
     @View("form.jsp")
     public void form() {
     }
     
     @POST
-    @ValidateOnExecution(type = ExecutableType.NONE)
-    public Response formPost(@Valid @BeanParam HelloBean form) {
+    public Response formPost(@Valid @BeanParam HelloForm form) {
 
         if (br.isFailed()) {
             messages.setErrors(
@@ -69,6 +69,9 @@ public class HelloController {
 
             return Response.status(BAD_REQUEST).entity("form.jsp").build();
         }
+        
+        helloBean.setFirstName(form.getFirstName());
+        helloBean.setLastName(form.getLastName());
 
         return Response.status(OK).entity("hello.jsp").build();
     }

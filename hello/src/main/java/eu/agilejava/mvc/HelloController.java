@@ -63,7 +63,6 @@ public class HelloController {
     }
 
     @POST
-    @ValidateOnExecution(type = ExecutableType.NONE)
     public Response formPost(@Valid @BeanParam HelloBean form) {
 
         if (validationResult.isFailed()) {

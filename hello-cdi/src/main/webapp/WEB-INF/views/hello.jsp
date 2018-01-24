@@ -6,6 +6,6 @@
         <title>MVC 1.0 Hello Demo</title>
     </head>
     <body>
-        <h1>Hello ${helloBean.firstName} ${helloBean.lastName}</h1>
+        <h1>Hello ${hello.firstName} ${hello.lastName}</h1>
     </body>
 </html>

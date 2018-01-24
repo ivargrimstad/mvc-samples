@@ -23,6 +23,7 @@
  */
 package eu.agilejava.mvc;
 
+import javax.mvc.binding.MvcBinding;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.ws.rs.FormParam;
@@ -33,11 +34,13 @@ import javax.ws.rs.FormParam;
  */
 public class HelloBean {
 
+    @MvcBinding
     @NotNull
     @Size(min = 1, max = 16)
     @FormParam("firstName")
     private String firstName;
 
+    @MvcBinding
     @NotNull
     @Size(min = 1, max = 24)
     @FormParam("lastName")

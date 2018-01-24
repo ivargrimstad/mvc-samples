@@ -18,10 +18,13 @@
     </modules>    
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <netbeans.hint.license>mit</netbeans.hint.license>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
+        <version.docker-maven-plugin>0.23.0</version.docker-maven-plugin>
+        <version.mvc.api>1.0-pr</version.mvc.api>
+        <version.ozark>1.0.0-m03</version.ozark>
     </properties>
 
     <dependencyManagement>
@@ -29,32 +32,49 @@
             <dependency>
                 <groupId>javax</groupId>
                 <artifactId>javaee-web-api</artifactId>
-                <version>8.0</version>
+                <version>7.0</version>
                 <scope>provided</scope>
-            </dependency>
-
+            </dependency>    
             <dependency>
                 <groupId>javax.mvc</groupId>
                 <artifactId>javax.mvc-api</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>${version.mvc.api}</version>
             </dependency>
             <dependency>
                 <groupId>org.mvc-spec.ozark</groupId>
                 <artifactId>ozark-core</artifactId>
-                <version>1.0.0-m03-SNAPSHOT</version>
-            </dependency>
+                <version>${version.ozark}</version>
+            </dependency>  
             <dependency>
                 <groupId>org.mvc-spec.ozark</groupId>
                 <artifactId>ozark-jersey</artifactId>
-                <version>1.0.0-m03-SNAPSHOT</version>
-            </dependency>
+                <version>${version.ozark}</version>
+            </dependency>  
             <dependency>
                 <groupId>org.mvc-spec.ozark</groupId>
                 <artifactId>ozark-resteasy</artifactId>
-                <version>1.0.0-m03-SNAPSHOT</version>
-            </dependency>
+                <version>${version.ozark}</version>
+            </dependency>  
         </dependencies>
     </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-web-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+      
+        <dependency>
+            <groupId>javax.mvc</groupId>
+            <artifactId>javax.mvc-api</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.mvc-spec.ozark</groupId>
+            <artifactId>ozark-core</artifactId>
+        </dependency>  
+    </dependencies>
 
     <repositories>
         <repository>

@@ -6,5 +6,5 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-  response.sendRedirect(request.getContextPath() + "/mvc-cdi/hello");
+  response.sendRedirect(request.getContextPath() + "/mvc/hello");
 %>
