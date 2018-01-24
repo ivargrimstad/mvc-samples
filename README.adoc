@@ -2,7 +2,20 @@
 
 The code in these samples are highly experimental as the work on JSR 371 is ongoing. That means that they may not always build or run on the latest snapshots. 
 
-The latest versions of the spec and reference implementation can be found here:
+== Running on GlassFish 5.0
 
- - Specification: https://java.net/projects/mvc-spec/pages/Home
- - Reference Implementation: https://ozark.java.net/
+Make sure you activate the `glassfish` profile
+
+```
+mvn clean package -Pglassfish
+```
+
+== Running on Wildfly 11
+
+Make sure you activate the `wildfly` profile
+
+```
+mvn clean package -Pwildfly
+```
+
+
