@@ -23,8 +23,8 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <failOnMissingWebXml>false</failOnMissingWebXml>
         <version.docker-maven-plugin>0.23.0</version.docker-maven-plugin>
-        <version.mvc.api>1.0-pr</version.mvc.api>
-        <version.ozark>1.0.0-m03</version.ozark>
+        <version.mvc.api>1.0-pfd</version.mvc.api>
+        <version.ozark>1.0.0-m04</version.ozark>
     </properties>
 
     <dependencyManagement>

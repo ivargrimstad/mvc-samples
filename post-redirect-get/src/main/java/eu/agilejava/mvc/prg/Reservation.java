@@ -25,7 +25,7 @@ package eu.agilejava.mvc.prg;
 
 import java.io.Serializable;
 import javax.inject.Named;
-import javax.mvc.annotation.RedirectScoped;
+import javax.mvc.RedirectScoped;
 
 /**
  *

@@ -25,8 +25,8 @@ package eu.agilejava.mvc;
 
 import static java.util.stream.Collectors.toList;
 import javax.inject.Inject;
-import javax.mvc.annotation.Controller;
-import javax.mvc.annotation.View;
+import javax.mvc.Controller;
+import javax.mvc.View;
 import javax.mvc.binding.BindingResult;
 import javax.validation.Valid;
 import javax.ws.rs.BeanParam;
@@ -64,7 +64,7 @@ public class HelloController {
 
         if (br.isFailed()) {
             messages.setErrors(
-                    br.getAllValidationErrors().stream()
+                    br.getAllErrors().stream()
                     .collect(toList()));
 
             return Response.status(BAD_REQUEST).entity("form.jsp").build();

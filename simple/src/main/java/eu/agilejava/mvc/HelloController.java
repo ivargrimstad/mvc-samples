@@ -23,8 +23,8 @@
  */
 package eu.agilejava.mvc;
 
-import javax.mvc.annotation.Controller;
-import javax.ws.rs.GET;
+import javax.mvc.Controller;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 
 /**
@@ -35,7 +35,7 @@ import javax.ws.rs.Path;
 @Controller
 public class HelloController {
 
-    @GET
+    @PUT
     public String view() {
         return "hello.jsp";
     }

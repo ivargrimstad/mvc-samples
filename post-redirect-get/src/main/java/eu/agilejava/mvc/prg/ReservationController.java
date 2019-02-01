@@ -26,10 +26,10 @@ package eu.agilejava.mvc.prg;
 import eu.agilejava.mvc.service.ReservationService;
 import static java.util.stream.Collectors.toList;
 import javax.inject.Inject;
-import javax.mvc.annotation.Controller;
-import javax.mvc.annotation.CsrfValid;
-import javax.mvc.annotation.View;
+import javax.mvc.Controller;
+import javax.mvc.View;
 import javax.mvc.binding.BindingResult;
+import javax.mvc.security.CsrfProtected;
 import javax.validation.Valid;
 import javax.ws.rs.BeanParam;
 import javax.ws.rs.GET;
@@ -64,7 +64,7 @@ public class ReservationController {
     public void emptyReservation() {
     }
 
-    @CsrfValid
+    @CsrfProtected
     @POST
     @Path("new")
     public Response createReservation(@Valid @BeanParam ReservationFormBean form) {
@@ -77,7 +77,7 @@ public class ReservationController {
 
         if (br.isFailed()) {
             messages.setErrors(
-                    br.getAllValidationErrors().stream()
+                    br.getAllErrors().stream()
                             .collect(toList()));
             
             return Response.status(BAD_REQUEST).entity("reservation.jsp").build();
